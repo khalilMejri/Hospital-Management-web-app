@@ -1,6 +1,5 @@
-# Hospital-Management-web-app
-A Responsive Web application for hospital management based on HTML5 CSS JS and PHP
-==========
+A Responsive Web application for hospital management based on HTML5 CSS Bootstrap 4 JS and PHP
+---
 The purpose of this mission is to develop a web application that can be used to keep track of patients registered in a hospital. This application will be used by the receptionist to follow the patients registered during their hospital stay.
 In addition, this system could support features such as access to any patient's previous visits, search for patients by name and other attributes, etc.
 
