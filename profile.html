@@ -16,12 +16,12 @@
     <link href="css/bootstrap-theme.css" rel="stylesheet">
     <!--external css-->
     <!-- font icon -->
-    <link href="css/elegant-icons-style.css" rel="stylesheet" />
-    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link href="css/elegant-icons-style.css" rel="stylesheet" type="text/css" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- Custom styles -->
-    <link href="css/custom.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/style-responsive.css" rel="stylesheet" />
+    <link href="css/custom.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/style-responsive.css" rel="stylesheet" type="text/css"/>
 
 </head>
 
@@ -177,20 +177,67 @@
     <section id="main-content">
         <section class="wrapper">
             <div class="container">
-                <h2>Profile de patient</h2><br>
-                <div class="row">
-                    <div class="col-sm-5">
-                <ul class="list-group">
-                    <li class="list-group-item list-group-item-success"><b>Nom</b> : Chouari</li>
-                    <li class="list-group-item list-group-item-info"><b>Prenom</b> : Hamdi Tayeb</li>
-                    <li class="list-group-item list-group-item-warning"><b>date de naissance</b> : 15/03/1997</li>
-                    <li class="list-group-item list-group-item-danger"><b>adresse</b> : kalaa kbira rue ahmed tlili</li>
-                    <li class="list-group-item list-group-item-danger"><b>numero</b> : 22750801</li>
-                    <li class="list-group-item list-group-item-danger"><b>numero de carnet</b> : 156457</li>
-                    <li class="list-group-item list-group-item-danger"><b>consultation</b> : </li>
-                </ul>
+              <div class="col-lg-8">
+                <!--Project Activity start-->
+                <section class="panel">
+                  <div class="panel-body progress-panel">
+                    <div class="row">
+                      <div class="col-lg-8 task-progress pull-left">
+                        <h1>Profile Patient</h1>
+                      </div>
                     </div>
-                </div>
+                  </div>
+                  <table class="table table-hover personal-task">
+                    <tbody>
+                      <tr>
+                        <td><b>Nom</b></td>
+                        <td>Chouari</td>
+                      </tr>
+                      <tr>
+                        <td><b>Prénom</b></td>
+                        <td>Hamdi Tayeb</td>
+                      </tr>
+                      <tr>
+                        <td><b>Date de naissance</b> </td>
+                        <td>15 Mars 1997</td>
+                      </tr>
+                      <tr>
+                        <td><b>Adresse</b></td>
+                        <td>Kalaa Kbira Rue Ahmed Tlili</td>
+                      </tr>
+                      <tr>
+                        <td><b>Numéro</b></td>
+                        <td>(+216) 22750801</td>
+                      </tr>
+                      <tr>
+                        <td><b>Numéro de carnet</b></td>
+                        <td>156457 CNSS</td>
+                      </tr>
+                      <tr>
+                        <td><b>Consultation</b></td>
+                        <td>Une petite description <a href="#"> ici</a></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <span class="badge bg-success">Résident</span>
+                          <span class="badge bg-warning">Non Résident</span>
+                        </td>
+                        <td>
+                          <div class="btn-row">
+                            <div class="btn-group">
+                              <button type="button" class="btn btn-info">Dossier Medical</button>
+                              <button type="button" class="btn btn-info active">Compte CNSS</button>
+                              <button type="button" class="btn btn-info">Couverture CNAM</button>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </section>
+                <!--Project Activity end-->
+              </div>
+
             <!-- all the page content goes here -->
 
             </div>
