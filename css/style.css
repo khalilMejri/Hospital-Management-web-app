@@ -58,7 +58,8 @@ table tr th { color: #688a7e;}
 
 .copyright {
   width: 100%;
-  position: absolute;
+  position: relative;
+  margin-bottom: 20px;
   bottom: 3%;
 }
 
