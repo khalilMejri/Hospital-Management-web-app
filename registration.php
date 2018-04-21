@@ -8,7 +8,7 @@
   <meta name="author" content="GL2 Team">
   <meta name="keyword" content="Initiative, Hopital, moderne, clinic, patient, admin, tout domaine sanétaire">
 
-  <title>Projet web GL2 ></title>
+  <title>registration </title>
 
   <!-- Bootstrap CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -22,6 +22,7 @@
   <link href="css/custom.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
   <link href="css/style-responsive.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/bootstrap-select.min.css" type="text/css"/>
 
   </head>
 
@@ -177,39 +178,49 @@
      <section id="main-content">
        <section class="wrapper">
            <div class="container">
-               <h2>Enregistrer Patient</h2><br>
                <div class="row">
                    <div class="col-sm-9">
-               <form class="form-horizontal">
+               <h2 style="text-align: center;">Enregistrer Patient</h2><br>
+               <form class="form-horizontal" method="post" action="add_Patient.php">
 
                    <div class="form-group">
                        <label class="control-label col-sm-2" for="nom">Nom<span class="required">*</span></label>
                        <div class="col-sm-10">
-                           <input type="text" class="form-control" id="nom" placeholder="Entrer nom" name="nom">
+                           <input type="text" class="form-control" id="nom" placeholder="Entrer nom" name="nom" required>
                        </div>
                    </div>
                    <div class="form-group">
                        <label class="control-label col-sm-2" for="prenom">Prénom<span class="required">*</span></label>
                        <div class="col-sm-10">
-                           <input type="text" class="form-control" id="prenom" placeholder="Entrer prenom" name="prenom">
+                           <input type="text" class="form-control" id="prenom" placeholder="Entrer prenom" name="prenom" required>
                        </div>
                    </div>
                    <div class="form-group">
-                       <label class="control-label col-sm-2" for="prenom">CIN / N°Passport<span class="required">*</span></label>
+                   <label class="control-label col-sm-2" >Sexe<span class="required">*</span></label>
+                   		<div class="col-sm-10">
+                           <select class="selectpicker" data-width="100%" name="sexe">
+                                    <option disabled selected hidden>homme/femme:</option>
+                                  <option name="sexe" value="homme">homme</option>
+                                  <option name="sexe" value="femme">femme</option>
+                            </select>
+                        </div>
+                    </div>
+                   <div class="form-group">
+                       <label class="control-label col-sm-2" for="cin">CIN <span class="required">*</span></label>
                        <div class="col-sm-10">
-                           <input type="text" class="form-control" id="prenom" placeholder="Entrer prenom" name="prenom">
+                           <input type="text" class="form-control" id="cin" placeholder="Entrer CIN" name="cin" required>
                        </div>
                    </div>
                    <div class="form-group">
                        <label class="control-label col-sm-2" for="date">Date de naissance<span class="required">*</span></label>
                        <div class="col-sm-10">
-                           <input type="date" class="form-control" id="date" placeholder="Entrer date de naissance" name="date">
+                           <input type="date" class="form-control" id="date" placeholder="Entrer date de naissance" name="date" required>
                        </div>
                    </div>
                    <div class="form-group">
                        <label class="control-label col-sm-2" for="adresse">Adresse<span class="required">*</span></label>
                        <div class="col-sm-10">
-                           <input type="text" class="form-control" id="adresse" placeholder="Enter Adresse" name="adresse">
+                           <input type="text" class="form-control" id="adresse" placeholder="Enter Adresse" name="adresse" >
                        </div>
                    </div>
                    <div class="form-group">
@@ -219,15 +230,9 @@
                        </div>
                    </div>
                    <div class="form-group">
-                       <label class="control-label col-sm-2" for="carnet">Numéro de carnet<span class="required">*</span></label>
+                       <label class="control-label col-sm-2" for="consultation">Description</label>
                        <div class="col-sm-10">
-                           <input type="number" class="form-control" id="carnet" placeholder="Enter numero de carnet" name="carnet">
-                       </div>
-                   </div>
-                   <div class="form-group">
-                       <label class="control-label col-sm-2" for="consultation">Consultation</label>
-                       <div class="col-sm-10">
-                           <input type="text" class="form-control" id="consultation" placeholder="Enter consultation" name="consultation">
+                           <input type="text" class="form-control" id="consultation" placeholder="Enter description" name="description">
                        </div>
                    </div>
                    <div class="form-group">
@@ -238,6 +243,7 @@
                    </div>
                </form>
                    </div>
+                   
                </div>
            </div>
          <!-- all the page content goes here -->
@@ -272,6 +278,7 @@
   <script src="js/jquery-ui.js"></script>
   <!-- custom script for this page-->
   <script src="js/scripts.js"></script>
+  <script src="js/bootstrap-select.min.js"></script>
 
 </body>
 
