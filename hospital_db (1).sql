@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 21, 2018 at 01:56 PM
--- Server version: 5.7.21
--- PHP Version: 5.6.35
+-- Generation Time: Apr 21, 2018 at 04:43 PM
+-- Server version: 5.7.19
+-- PHP Version: 5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -64,12 +64,19 @@ CREATE TABLE IF NOT EXISTS `department` (
 DROP TABLE IF EXISTS `doctor`;
 CREATE TABLE IF NOT EXISTS `doctor` (
   `Doctor_CIN` bigint(20) NOT NULL,
-  `RegistrationNumber` bigint(20) NOT NULL,
+  `RegistrationNumber` bigint(20) NOT NULL AUTO_INCREMENT,
   `Grade` varchar(256) NOT NULL,
   `Speciality` varchar(256) NOT NULL,
   PRIMARY KEY (`Doctor_CIN`),
   UNIQUE KEY `RegistrationNumber` (`RegistrationNumber`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `doctor`
+--
+
+INSERT INTO `doctor` (`Doctor_CIN`, `RegistrationNumber`, `Grade`, `Speciality`) VALUES
+(1243452, 1, '', 'cardiologie');
 
 -- --------------------------------------------------------
 
@@ -160,6 +167,7 @@ CREATE TABLE IF NOT EXISTS `person` (
   `Passport` bigint(20) DEFAULT NULL,
   `Adress` varchar(64) DEFAULT NULL,
   `PhoneNumber` bigint(20) DEFAULT NULL,
+  `Birthday` date DEFAULT NULL,
   PRIMARY KEY (`CIN`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -167,8 +175,9 @@ CREATE TABLE IF NOT EXISTS `person` (
 -- Dumping data for table `person`
 --
 
-INSERT INTO `person` (`FirstName`, `LastName`, `Gender`, `CIN`, `Passport`, `Adress`, `PhoneNumber`) VALUES
-('Sami', 'Belaid', 'homme', 12838225, NULL, 'Cité Olympique', 92545567);
+INSERT INTO `person` (`FirstName`, `LastName`, `Gender`, `CIN`, `Passport`, `Adress`, `PhoneNumber`, `Birthday`) VALUES
+('Slama', 'Ali', 'homme', 1243452, 452452475, 'kalaa', 545412, '2000-04-08'),
+('Sami', 'Belaid', 'homme', 12838225, 7657, 'Cité Olympique', 92545567, '1963-04-12');
 
 -- --------------------------------------------------------
 
