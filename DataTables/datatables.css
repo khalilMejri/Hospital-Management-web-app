@@ -108,16 +108,16 @@ table.dataTable thead .sorting_desc_disabled:after {
   opacity: 0.5;
 }
 table.dataTable thead .sorting:after {
-  opacity: 0.2;
-  content: "\e150";
+  /*opacity: 0.2;*/
+  content:url("DataTables-1.10.16/images/sort_both.png");
   /* sort */
 }
 table.dataTable thead .sorting_asc:after {
-  content: "\e155";
+  content: url("DataTables-1.10.16/images/sort_asc.png");
   /* sort-by-attributes */
 }
 table.dataTable thead .sorting_desc:after {
-  content: "\e156";
+  content: url("DataTables-1.10.16/images/sort-desc.png");
   /* sort-by-attributes-alt */
 }
 table.dataTable thead .sorting_asc_disabled:after,
