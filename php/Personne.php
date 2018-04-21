@@ -16,6 +16,7 @@ class Personne
     public $CIN;
     public $Adress;
     private $PhoneNumber;
+    private $Birthday ;
 
     /**
      * Personne constructor.
@@ -27,7 +28,7 @@ class Personne
      * @param $phoneNumber
      * @param $bd
      */
-    public function __construct($FirstName, $LastName, $Gender, $CIN, $Adress, $PhoneNumber)
+    public function __construct($FirstName, $LastName, $Gender, $CIN, $Adress, $PhoneNumber ,$Birthday)
     {
         $this->FirstName = $FirstName;
         $this->LastName = $LastName;
@@ -35,6 +36,7 @@ class Personne
         $this->CIN = $CIN;
         $this->Adress = $Adress;
         $this->PhoneNumber = $PhoneNumber;
+        $this->Birthday= $Birthday ;
     }
 
     /**
@@ -57,7 +59,9 @@ class Personne
 
                 'Adress' => $this->Adress,
 
-                'PhoneNumber' => $this->PhoneNumber
+                'PhoneNumber' => $this->PhoneNumber,
+
+                'Birthday' => $this->Birthday
 
             ));
         }catch (PDOException $e){
