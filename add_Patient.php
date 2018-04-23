@@ -4,12 +4,12 @@
     try {
         $bd = CnxBD::getInstance();
         //Inserting Person attribute
-        $req = $bd->prepare('INSERT INTO hospital_db.person (FirstName, LastName, Gender, CIN, Adress, PhoneNumber) VALUES(:FirstName, :LastName, :Gender, :CIN, :Adress, :PhoneNumber)');
+        $req = $bd->prepare('INSERT INTO hospital_db.person (FirstName, LastName, Gender, CIN, Adress, PhoneNumber,BirthDay) VALUES(:FirstName, :LastName, :Gender, :CIN, :Adress, :PhoneNumber,:BirthDay)');
         $req->execute(array(
 
-            'FirstName' => $_POST['nom'],
+            'FirstName' => trim($_POST['nom']),
 
-            'LastName' => $_POST['prenom'],
+            'LastName' => trim($_POST['prenom']),
 
             'Gender' => $_POST['sexe'],
 
@@ -17,7 +17,9 @@
 
             'PhoneNumber' => $_POST['numero'],
 
-            'Adress' => $_POST['adresse']
+            'Adress' => trim($_POST['adresse']),
+
+            'BirthDay'=>$_POST['date']
 
         ));
 
@@ -32,9 +34,10 @@
             'isHere' => 1,
             'medicalDoc' => $bd->lastInsertId()
         ));
+        header("Location:registration_result.php?result=TRUE");
 
     }catch (PDOException $e){
-        echo $e->getMessage();
+        header("Location:registration_result.php");
     }
-    header("Location:registration_success.php");
+
 

@@ -198,7 +198,7 @@
                    <div class="form-group">
                    <label class="control-label col-sm-2" >Sexe<span class="required">*</span></label>
                    		<div class="col-sm-10">
-                           <select class="selectpicker" data-width="100%" name="sexe">
+                           <select class="form-control" data-width="100%" name="sexe">
                                     <option disabled selected hidden>homme/femme:</option>
                                   <option name="sexe" value="homme">homme</option>
                                   <option name="sexe" value="femme">femme</option>

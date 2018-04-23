@@ -177,9 +177,24 @@
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper">
-                <div class="alert alert-success">
-                    Patient enregistré avec succesé.<br><a href="registration.php" class="alert-link">Cliquer ici pour enregistrer un autre patient.</a>
-                </div>
+            <?php
+                if(isset($_GET['result'])) {
+                    echo '<div class="alert alert-success" align="center">
+                        Patient enregistré avec succesé.<br><a href="registration.php" class="alert-link">Cliquer ici
+                            pour enregistrer un autre patient.</a>
+                    </div>';
+                }else{
+                    echo '<div class="alert alert-danger" align="center">
+                        Patient Non Enregistré .<br><a href="registration.php" class="alert-link">Cliquez ici pour réessayer.</a>
+                    </div>';
+                    }
+
+            ?>
+
+
+
+
+
             <!-- all the page content goes here -->
         </section>
     </section>
@@ -187,7 +202,7 @@
 
 
     <!-- page footer -->
-    <footer class="copyright col-sm-3">
+    <footer class="copyright col-sm-3" style="position: fixed">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 text-center">
