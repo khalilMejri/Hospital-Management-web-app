@@ -193,7 +193,7 @@
             <div class="container">
                 <!-- all the page content goes here -->
 
-                <table id="Doctor" data-pagination="true" data-search="true" data-toggle="table"
+                <table id="Patient" data-pagination="true" data-search="true" data-toggle="table"
                        class="table table-striped table-bordered table-hover  ">
                     <thead>
                     <tr>
@@ -202,26 +202,27 @@
                         <th>Gender</th>
                         <th>Age</th>
                         <th>CIN</th>
-                        <th>Specialite</th>
+                        <th>Presence</th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php
                     require "php/CnxBD.php";
                     $MaConnection = CnxBD::getInstance();
-                    $req = "select * FROM `person` inner join `doctor` where person.CIN=doctor.Doctor_CIN";
+                    $req = "select * FROM `person` inner join `patient` where person.CIN=patient.Patient_CIN";
                     $result = $MaConnection->prepare($req);
                     $result->execute();
+
                     while ($row=$result->fetch()) {
                         $age = date_diff(date_create($row["Birthday"]), date_create('now'))->y;
                         echo "
-                    <tr>
-                        <td > <a href='doctor_profile.php?var=" . $row["CIN"] . " ' style=' display: block ;width: 100%; height: 100% ;color: inherit;'> " . $row["FirstName"] . "</a> </td>
+                    <tr><a href='patient_profile.php' id='" . $row["CIN"] . "'>
+                        <td > <a href='patient_profile.php?var=" . $row["CIN"] . " ' style=' display: block ;width: 100%; height: 100% ;color: inherit;'> " . $row["FirstName"] . "</a> </td>
                         <td>" . $row["LastName"] . "  </td>
                         <td>" . $row["Gender"] . "  </td>
                         <td>" . $age . " </td>
                         <td>" . $row["CIN"] . "  </td>
-                        <td>" . $row["Speciality"] ." </td>
+                        <td>" ;if($row["isHere"]==1)echo" <img src='imgs/ishere.png' style='width: 32px;height: 32px;margin: auto;    display: block;'> ";else echo"<img src='imgs/isnothere.png' style='width: 32px;height: 32px;margin: auto;    display: block;' >";  echo "  </td>
                     </a></tr>";
                     } ?>
                     </tbody>
@@ -250,7 +251,7 @@
 <script src="js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" charset="utf8" src="DataTables/datatables.js"></script>
 <script>$(document).ready(function () {
-        $('#Doctor').DataTable();
+        $('#Patient').DataTable();
     });
 </script>
 
