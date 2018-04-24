@@ -10,10 +10,10 @@
     {
     $bd=CnxBD::getInstance();
 
-    $req1=$bd->prepare("delete from person WHERE CIN=?") ;
-    $req1->execute(array($_GET['id']));
     $req2=$bd->prepare("delete from patient WHERE Patient_CIN=?") ;
     $req2->execute(array($_GET['id']));
+    $req1=$bd->prepare("delete from person WHERE CIN=?") ;
+    $req1->execute(array($_GET['id']));
     $req3=$bd->prepare("delete from medical_doc WHERE ID=?") ;
     $req3->execute(array($_GET['docID']));
 
