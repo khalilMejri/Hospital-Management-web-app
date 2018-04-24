@@ -109,8 +109,8 @@
                           <span class="menu-arrow arrow_carrot-right"></span>
             </a>
             <ul class="sub">
-              <li><a class="" href="form_patient.html">Enregistrer patient</a></li>
-              <li><a class="" href="form_medecin.html">Enregistrer médecin</a></li>
+                <li><a class="" href="registration.php">Enregistrer patient</a></li>
+                <li><a class="" href="registrationDoc.html">Enregistrer médecin</a></li>
             </ul>
           </li>
 
@@ -199,7 +199,7 @@
                    <label class="control-label col-sm-2" >Sexe<span class="required">*</span></label>
                    		<div class="col-sm-10">
                            <select class="form-control" data-width="100%" name="sexe">
-                                    <option disabled selected hidden>homme/femme:</option>
+                                 <option disabled selected hidden >homme/femme:</option>
                                   <option name="sexe" value="homme">homme</option>
                                   <option name="sexe" value="femme">femme</option>
                             </select>

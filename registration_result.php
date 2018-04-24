@@ -109,8 +109,8 @@
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="form_patient.html">Enregistrer patient</a></li>
-                        <li><a class="" href="form_medecin.html">Enregistrer médecin</a></li>
+                        <li><a class="" href="registration.php">Enregistrer patient</a></li>
+                        <li><a class="" href="registrationDoc.html">Enregistrer médecin</a></li>
                     </ul>
                 </li>
 

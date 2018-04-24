@@ -8,7 +8,7 @@
     <meta name="author" content="GL2 Team">
     <meta name="keyword" content="Initiative, Hopital, moderne, clinic, patient, admin, tout domaine sanétaire">
 
-    <title>Projet web GL2 ></title>
+    <title>Enregistrer  Docteur </title>
 
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -16,12 +16,13 @@
     <link href="css/bootstrap-theme.css" rel="stylesheet">
     <!--external css-->
     <!-- font icon -->
-    <link href="css/elegant-icons-style.css" rel="stylesheet" type="text/css" />
-    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/elegant-icons-style.css" rel="stylesheet" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
     <!-- Custom styles -->
-    <link href="css/custom.css" rel="stylesheet" type="text/css">
-    <link href="css/style.css" rel="stylesheet" type="text/css">
-    <link href="css/style-responsive.css" rel="stylesheet" type="text/css"/>
+    <link href="css/custom.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style-responsive.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/bootstrap-select.min.css" type="text/css"/>
 
 </head>
 
@@ -108,8 +109,8 @@
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="form_patient.html">Enregistrer patient</a></li>
-                        <li><a class="" href="form_medecin.html">Enregistrer médecin</a></li>
+                        <li><a class="" href="registration.php">Enregistrer patient</a></li>
+                        <li><a class="" href="registrationDoc.html">Enregistrer médecin</a></li>
                     </ul>
                 </li>
 
@@ -177,70 +178,89 @@
     <section id="main-content">
         <section class="wrapper">
             <div class="container">
-              <div class="col-lg-8">
-                <!--Project Activity start-->
-                <section class="panel">
-                  <div class="panel-body progress-panel">
-                    <div class="row">
-                      <div class="col-lg-8 task-progress pull-left">
-                        <h1>Profile Patient</h1>
-                      </div>
-                    </div>
-                  </div>
-                  <table class="table table-hover personal-task">
-                    <tbody>
-                      <tr>
-                        <td><b>Nom</b></td>
-                        <td>Chouari</td>
-                      </tr>
-                      <tr>
-                        <td><b>Prénom</b></td>
-                        <td>Hamdi Tayeb</td>
-                      </tr>
-                      <tr>
-                        <td><b>Date de naissance</b> </td>
-                        <td>15 Mars 1997</td>
-                      </tr>
-                      <tr>
-                        <td><b>Adresse</b></td>
-                        <td>Kalaa Kbira Rue Ahmed Tlili</td>
-                      </tr>
-                      <tr>
-                        <td><b>Numéro</b></td>
-                        <td>(+216) 22750801</td>
-                      </tr>
-                      <tr>
-                        <td><b>Numéro de carnet</b></td>
-                        <td>156457 CNSS</td>
-                      </tr>
-                      <tr>
-                        <td><b>Consultation</b></td>
-                        <td>Une petite description <a href="#"> ici</a></td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <span class="badge bg-success">Résident</span>
-                          <span class="badge bg-warning">Non Résident</span>
-                        </td>
-                        <td>
-                          <div class="btn-row">
-                            <div class="btn-group">
-                              <button type="button" class="btn btn-info">Dossier Medical</button>
-                              <button type="button" class="btn btn-info active">Compte CNSS</button>
-                              <button type="button" class="btn btn-info">Couverture CNAM</button>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </section>
-                <!--Project Activity end-->
-              </div>
+                <div class="row">
+                    <div class="col-sm-9">
+                        <h2 style="text-align: center;">Enregistrer Docteur</h2><br>
+                        <form class="form-horizontal" method="post" action="add_Docteur.php">
 
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="nom">Nom<span class="required">*</span></label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="nom" placeholder="Entrer nom" name="nom" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="prenom">Prénom<span class="required">*</span></label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="prenom" placeholder="Entrer prenom" name="prenom" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" >Sexe<span class="required">*</span></label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" data-width="100%" name="sexe">
+                                        <option disabled selected hidden>homme/femme:</option>
+                                        <option name="sexe" value="homme">homme</option>
+                                        <option name="sexe" value="femme">femme</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="cin">CIN <span class="required">*</span></label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="cin" placeholder="Entrer CIN" name="cin" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" >Specialé</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="specialite" placeholder="Enter specialité" name="specialite">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Grade</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" data-width="100%" name="grade">
+                                        <option name="grade" value="1">1</option>
+                                        <option name="grade" value="2">1</option>
+                                        <option name="grade" value="2">1</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="date">Date de naissance<span class="required">*</span></label>
+                                <div class="col-sm-10">
+                                    <input type="date" class="form-control" id="date" placeholder="Entrer date de naissance" name="date" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="adresse">Adresse<span class="required">*</span></label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="adresse" placeholder="Enter Adresse" name="adresse" >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="numero">Numéro de téléphone<span class="required">*</span></label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" id="numero" placeholder="Enter numero de telephone" name="numero">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <input type="submit" name="submit" class="btn btn-info" value="Enregistrer" >
+                                    <button type="submit" class="btn btn-danger">Annuler</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
             <!-- all the page content goes here -->
 
-            </div>
         </section>
     </section>
     <!--main content end-->
@@ -271,6 +291,7 @@
 <script src="js/jquery-ui.js"></script>
 <!-- custom script for this page-->
 <script src="js/scripts.js"></script>
+<script src="js/bootstrap-select.min.js"></script>
 
 </body>
 
