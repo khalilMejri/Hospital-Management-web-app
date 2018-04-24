@@ -10,32 +10,30 @@
 
     <title>Projet web GL2 ></title>
 
-
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- bootstrap theme -->
     <link href="css/bootstrap-theme.css" rel="stylesheet">
     <!--external css-->
     <!-- font icon -->
-    <link href="css/elegant-icons-style.css" rel="stylesheet"/>
-    <link href="css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="css/elegant-icons-style.css" rel="stylesheet" type="text/css" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- Custom styles -->
-    <link href="css/custom.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/style-responsive.css" rel="stylesheet"/>
-    <link href="DataTables/datatables.css" rel="stylesheet"/>
-
+    <link href="css/custom.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/style-responsive.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="css/bootstrap-select.min.css" type="text/css"/>
 
 </head>
 
 <body>
+
 <!-- container section start -->
 <section id="container" class="">
 
     <header class="header dark-bg">
         <div class="toggle-nav">
-            <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i
-                        class="icon_menu"></i></div>
+            <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i class="icon_menu"></i></div>
         </div>
 
         <!--logo start-->
@@ -180,49 +178,109 @@
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper">
+            <div class="container">
+              <div class="col-lg-8">
+                <!--Project Activity start-->
+                <section class="panel">
+                  <div class="panel-body progress-panel">
+                    <div class="row">
+                      <div class="col-lg-8 task-progress pull-left">
+                        <h1>Profile Patient</h1>
+                      </div>
+                    </div>
+                  </div>
+                  <table class="table table-hover personal-task">
+                    <tbody>
+                        
+                        <?php
+                        include "add_patient_profile.php" ;
+                        ?>
 
+                        <td>
+                          <span class="badge bg-success">Résident</span>
+                          <span class="badge bg-warning">Non Résident</span>
+                        </td>
+                        <td>
+                          <div class="btn-row">
+                            <div class="btn-group">
+                              <button type="button" class="btn btn-info">Dossier Medical</button>
+                              <button type="button" class="btn btn-info active">Compte CNSS</button>
+                              <button type="button" class="btn btn-info">Couverture CNAM</button>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </section>
+                <!--Project Activity end-->
             <!-- all the page content goes here -->
+              </div>
 
+                <div class="col-lg-4">
+                <section class="panel">
+                  <div class="panel-body progress-panel">
+                    <div class="row">
+                      <div class="col-lg-8 task-progress pull-left">
+                          <h1 style="padding-left:45%"><a href="#demo" class="btn btn-basic" data-toggle="collapse">Rendez-vous</a></h1>
+                      </div>
+                    </div>
+                </div>
+                    <div id="demo" class="collapse">
+                    <table class="table table-hover personal-task">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <input type="date" class="form-control" id="dater" placeholder="Date Rendez-vous" name="nom">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">
+                                choisir departement:
+                                <select class="selectpicker">
+                                    <option disabled selected hidden>choisir departement:</option>
+                                  <option>médecine générale</option>
+                                  <option>radiologie</option>
+                                  <option>chirurgie</option>
+                                  <option>cardiologie</option>
+                                  <option>neurologie</option>
+                                  <option>Pédiatrie</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                       <button type="button" class="btn btn-info">Enregistrer</button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </div>
+            </section>
+
+                </div>
+            </div>
+            <div>
+            </div>
         </section>
     </section>
     <!--main content end-->
 
-    <section id="main-content">
-        <section class="wrapper">
 
-            <div class="container">
-                <!-- all the page content goes here -->
-
-                <table id="Patient" data-pagination="true" data-search="true" data-toggle="table"
-                       class="table table-striped table-bordered table-hover  ">
-                    <thead>
-                    <tr >
-                        <th style="text-align: center">FirstName</th>
-                        <th style="text-align: center">LastName</th>
-                        <th style="text-align: center">Gender</th>
-                        <th style="text-align: center">Date de naissance</th>
-                        <th style="text-align: center">CIN</th>
-                        <th style="text-align: center">Presence</th>
-                        <th style="text-align: center">supprimer</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-
-                        include "add_to_list.php";
-                    ?>
-                    </tbody>
-
-                </table>
-            </div>
-        </section>
-    </section>
     <!-- page footer -->
     <footer class="copyright col-sm-3">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 text-center">
-                    &copy; 2018 INSAT TEK-CARE.. All rights Reserved
+                    &copy; 2018  INSAT TEK-CARE.. All rights Reserved
                 </div>
             </div>
         </div>
@@ -232,15 +290,9 @@
 <!-- container section start -->
 
 <!-- javascripts -->
-
-
+<script src="js/jquery.js"></script>
 <script src="js/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" charset="utf8" src="DataTables/datatables.js"></script>
-<script>$(document).ready(function () {
-        $('#Patient').DataTable();
-    });
-</script>
-
+<!-- bootstrap -->
 <script src="js/bootstrap.min.js"></script>
 <!-- nice scroll -->
 <script src="js/jquery.scrollTo.min.js"></script>
@@ -248,5 +300,8 @@
 <script src="js/jquery-ui.js"></script>
 <!-- custom script for this page-->
 <script src="js/scripts.js"></script>
+<script src="js/bootstrap-select.min.js"></script>
+
+</body>
 
 </html>
