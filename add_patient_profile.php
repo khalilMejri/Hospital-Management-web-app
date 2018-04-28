@@ -9,34 +9,33 @@
         try {
             $bd = CnxBD::getInstance();
 
-            $req = $bd->prepare("select * from person,patient,medical_doc WHERE person.CIN=? AND patient.Patient_ID=? AND medical_doc.ID=?");
-            $req->execute(array($_GET['id'], $_GET['docID'], $_GET['docID']));
-            $info = $req->fetch(PDO::FETCH_OBJ);
-        }
-        catch (PDOException $e)
-        {
-            echo $e->getMessage();
-        }
-                    echo"
+            $req = $bd->prepare("select * from  `person` inner join `patient` WHERE person.CIN=? AND person.CIN=patient.Patient_CIN ");
+            $req->execute(array($_GET['id']));
+            $info = $req->fetch();
+            $medid= $info['Medical_DOC_ID'];
+            $req2= $bd->prepare("select * from `medical_doc` where medical_doc.ID ='$medid'");
+            $req2->execute() ;
+            $doc=$req2->fetch();
+            echo"
                     <tr>
                         <td><b>Nom</b></td>
-                        <td>$info->FirstName</td>
+                        <td>".$info["FirstName"]."</td>
                       </tr>
                       <tr>
                         <td><b>Prénom</b></td>
-                        <td>$info->LastName</td>
+                        <td>".$info["LastName"]."</td>
                       </tr>
                       <tr>
                         <td><b>Date de naissance</b> </td>
-                        <td>$info->BirthDay</td>
+                        <td>".$info["Birthday"]."</td>
                       </tr>
                       <tr>
                         <td><b>Adresse</b></td>
-                        <td>$info->Adress</td>
+                        <td>".$info["Adress"]."</td>
                       </tr>
                       <tr>
                         <td><b>Numéro</b></td>
-                        <td>(+216) $info->PhoneNumber</td>
+                        <td>(+216) ".$info["PhoneNumber"]."</td>
                       </tr>
                       <tr>
                         <td><b>Numéro de carnet</b></td>
@@ -44,5 +43,10 @@
                       </tr>
                       <tr>
                         <td><b>Consultation</b></td>
-                        <td>$info->Description</td>
+                        <td>".$doc["Description"]."</td>
                       </tr>";
+        }
+        catch (PDOException $e)
+        {
+            echo $e->getMessage();
+        }
