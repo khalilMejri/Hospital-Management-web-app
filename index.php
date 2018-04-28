@@ -26,6 +26,17 @@
   </head>
 
 <body>
+  <?php
+  session_start();
+  if((isset($_SESSION['user'])) && (isset($_SESSION['passwd']))){
+    echo $_SESSION['user']."+".$_SESSION['passwd'];
+    }
+    else{
+
+        header("Location:session.php");
+    }
+
+  ?>
   <!-- container section start -->
   <section id="container" class="">
 
@@ -74,7 +85,7 @@
                 <a href="#"><i class="icon_clock_alt"></i> Planning </a>
               </li>
               <li>
-                <a href="login.html"><i class="icon_key_alt"></i> Déconnexion </a>
+                <a href="session.php"><i class="icon_key_alt"></i> Déconnexion </a>
               </li>
               <li>
                 <a href="info.html"><i class="icon_key_alt"></i> Infoline </a>
@@ -108,8 +119,8 @@
                           <span class="menu-arrow arrow_carrot-right"></span>
             </a>
             <ul class="sub">
-              <li><a class="" href="registration.php">Enregistrer patient</a></li>
-              <li><a class="" href="registrationDoc.html">Enregistrer médecin</a></li>
+              <li><a class="" href="form_patient.html">Enregistrer patient</a></li>
+              <li><a class="" href="form_medecin.html">Enregistrer médecin</a></li>
             </ul>
           </li>
 
@@ -194,8 +205,12 @@
                  </div>
              </div>
          </footer>
+         <?php
 
+         ?>
   </section>
+
+
   <!-- container section start -->
 
   <!-- javascripts -->
