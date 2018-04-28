@@ -28,7 +28,7 @@
                       </tr>
                       <tr>
                         <td><b>Date de naissance</b> </td>
-                        <td>$info->Birthday</td>
+                        <td>$info->BirthDay</td>
                       </tr>
                       <tr>
                         <td><b>Adresse</b></td>

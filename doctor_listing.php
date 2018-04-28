@@ -78,7 +78,7 @@
                             <a href="#"><i class="icon_clock_alt"></i> Planning </a>
                         </li>
                         <li>
-                            <a href="login.html"><i class="icon_key_alt"></i> Déconnexion </a>
+                            <a href="session.php"><i class="icon_key_alt"></i> Déconnexion </a>
                         </li>
                         <li>
                             <a href="info.html"><i class="icon_key_alt"></i> Infoline </a>
@@ -177,19 +177,18 @@
     </aside>
     <!--sidebar end-->
 
+    <!--main content start-->
+    <section id="main-content">
+        <section class="wrapper">
+
+            <!-- all the page content goes here -->
+
+        </section>
+    </section>
+    <!--main content end-->
 
     <section id="main-content">
         <section class="wrapper">
-            <div class="row">
-              <div class="col-lg-12">
-                <h3 class="page-header"><i class="fa fa-files-o"></i>Liste Docteurs</h3>
-                <ol class="breadcrumb">
-                  <li><i class="fa fa-home"></i><a href="index.php">Accueil</a></li>
-                  <li><i class="icon_document_alt"></i>Personnels</li>
-                  <li><i class="fa fa-files-o"></i>Médecins</li>
-                </ol>
-              </div>
-            </div>
 
             <div class="container">
                 <!-- all the page content goes here -->
@@ -208,8 +207,23 @@
                     </thead>
                     <tbody>
                     <?php
-                        include "add_to_list_doctor.php" ;
-                     ?>
+                    require "php/CnxBD.php";
+                    $MaConnection = CnxBD::getInstance();
+                    $req = "select * FROM `person` inner join `doctor` where person.CIN=doctor.Doctor_CIN";
+                    $result = $MaConnection->prepare($req);
+                    $result->execute();
+                    while ($row=$result->fetch()) {
+                        $age = date_diff(date_create($row["Birthday"]), date_create('now'))->y;
+                        echo "
+                    <tr>
+                        <td > <a href='doctor_profile.php?var=" . $row["CIN"] . " ' style=' display: block ;width: 100%; height: 100% ;color: inherit;'> " . $row["FirstName"] . "</a> </td>
+                        <td>" . $row["LastName"] . "  </td>
+                        <td>" . $row["Gender"] . "  </td>
+                        <td>" . $age . " </td>
+                        <td>" . $row["CIN"] . "  </td>
+                        <td>" . $row["Speciality"] ." </td>
+                    </a></tr>";
+                    } ?>
                     </tbody>
 
                 </table>

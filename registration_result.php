@@ -75,7 +75,7 @@
                             <a href="#"><i class="icon_clock_alt"></i> Planning </a>
                         </li>
                         <li>
-                            <a href="login.html"><i class="icon_key_alt"></i> Déconnexion </a>
+                            <a href="session.php"><i class="icon_key_alt"></i> Déconnexion </a>
                         </li>
                         <li>
                             <a href="info.html"><i class="icon_key_alt"></i> Infoline </a>
