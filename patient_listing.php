@@ -1,11 +1,3 @@
-<?php
-
-
-    if(!isset($_SESSION))
-    {
-        session_start();
-    }
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -86,7 +78,7 @@
                             <a href="#"><i class="icon_clock_alt"></i> Planning </a>
                         </li>
                         <li>
-                            <a href="login.html"><i class="icon_key_alt"></i> Déconnexion </a>
+                            <a href="session.php"><i class="icon_key_alt"></i> Déconnexion </a>
                         </li>
                         <li>
                             <a href="info.html"><i class="icon_key_alt"></i> Infoline </a>
@@ -189,16 +181,14 @@
     <section id="main-content">
         <section class="wrapper">
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <h3 class="page-header"><i class="fa fa-files-o"></i> Liste Patients</h3>
-                    <ol class="breadcrumb">
-                        <li><i class="fa fa-home"></i><a href="index.php">Accueil</a></li>
-                        <li><i class="icon_document_alt"></i>Accés</li>
-                        <li><i class="fa fa-files-o"></i>Enregistrements</li>
-                    </ol>
-                </div>
-            </div>
+            <!-- all the page content goes here -->
+
+        </section>
+    </section>
+    <!--main content end-->
+
+    <section id="main-content">
+        <section class="wrapper">
 
             <div class="container">
                 <!-- all the page content goes here -->
@@ -213,16 +203,13 @@
                         <th style="text-align: center">Date de naissance</th>
                         <th style="text-align: center">CIN</th>
                         <th style="text-align: center">Presence</th>
-<<<<<<< HEAD
 
-=======
->>>>>>> 9176ccc6a71f5af0ff59743bfdc370a8e145b1da
                     </tr>
                     </thead>
                     <tbody>
                     <?php
 
-                        include "add_to_list_patient.php";
+                        include "add_to_list.php";
                     ?>
                     </tbody>
 

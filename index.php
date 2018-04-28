@@ -187,11 +187,7 @@
      <!--main content start-->
      <section id="main-content">
        <section class="wrapper">
-           <div class="row">
-           <div class="col-lg-12">
-               <h3 class="page-header"><i class="fa fa-files-o"></i> Accueil </h3>
-           </div>
-           </div>
+
          <!-- all the page content goes here -->
 
        </section>
