@@ -1,6 +1,4 @@
-
-
-<<!DOCTYPE html>
+<!DOCTYPE html>
  <html lang="en" class="no-js ie6 lt8">
  <html lang="en" class="no-js ie7 lt8">
  <html lang="en" class="no-js ie8 lt8">
@@ -12,7 +10,7 @@
     <title>Login</title>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="app2.css" />
+    <link rel="stylesheet" type="text/css" href="css/login.css" />
 
 </head>
 <body>
@@ -110,7 +108,6 @@
                       session_start();
                       $_SESSION['user']=$user_name;
                       $_SESSION['passwd']=$mdp;
-                      
                       header("Location:index.php");
 
                     }
