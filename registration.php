@@ -177,10 +177,21 @@
      <!--main content start-->
      <section id="main-content">
        <section class="wrapper">
+
+        <div class="row">
+              <div class="col-lg-12">
+                <h3 class="page-header"><i class="fa fa-files-o"></i> Enregistrer Patient</h3>
+                <ol class="breadcrumb">
+                  <li><i class="fa fa-home"></i><a href="index.php">Accueil</a></li>
+                  <li><i class="icon_document_alt"></i>Accés</li>
+                  <li><i class="fa fa-files-o"></i>Inscription</li>
+                </ol>
+              </div>
+            </div>
+
            <div class="container">
                <div class="row">
                    <div class="col-sm-9">
-               <h2 style="text-align: center;">Enregistrer Patient</h2><br>
                <form class="form-horizontal" method="post" action="add_Patient.php">
 
                    <div class="form-group">

@@ -177,18 +177,19 @@
     </aside>
     <!--sidebar end-->
 
-    <!--main content start-->
-    <section id="main-content">
-        <section class="wrapper">
-
-            <!-- all the page content goes here -->
-
-        </section>
-    </section>
-    <!--main content end-->
 
     <section id="main-content">
         <section class="wrapper">
+            <div class="row">
+              <div class="col-lg-12">
+                <h3 class="page-header"><i class="fa fa-files-o"></i>Liste Docteurs</h3>
+                <ol class="breadcrumb">
+                  <li><i class="fa fa-home"></i><a href="index.php">Accueil</a></li>
+                  <li><i class="icon_document_alt"></i>Personnels</li>
+                  <li><i class="fa fa-files-o"></i>Médecins</li>
+                </ol>
+              </div>
+            </div>
 
             <div class="container">
                 <!-- all the page content goes here -->
