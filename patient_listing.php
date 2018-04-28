@@ -1,3 +1,11 @@
+<?php
+
+
+    if(!isset($_SESSION))
+    {
+        session_start();
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -203,13 +211,12 @@
                         <th style="text-align: center">Date de naissance</th>
                         <th style="text-align: center">CIN</th>
                         <th style="text-align: center">Presence</th>
-                        <th style="text-align: center">supprimer</th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php
 
-                        include "add_to_list.php";
+                        include "add_to_list_patient.php";
                     ?>
                     </tbody>
 

@@ -16,8 +16,8 @@
     <link href="css/bootstrap-theme.css" rel="stylesheet">
     <!--external css-->
     <!-- font icon -->
-    <link href="css/elegant-icons-style.css" rel="stylesheet" type="text/css" />
-    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/elegant-icons-style.css" rel="stylesheet" type="text/css"/>
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     <!-- Custom styles -->
     <link href="css/custom.css" rel="stylesheet" type="text/css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
@@ -28,12 +28,14 @@
 
 <body>
 
+
 <!-- container section start -->
 <section id="container" class="">
 
     <header class="header dark-bg">
         <div class="toggle-nav">
-            <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i class="icon_menu"></i></div>
+            <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i
+                        class="icon_menu"></i></div>
         </div>
 
         <!--logo start-->
@@ -176,95 +178,124 @@
     <!--sidebar end-->
 
     <!--main content start-->
+    <?php session_start();
+    if(isset($_GET['id']))
+        $_SESSION["last Patient"]= $_GET['id'] ;
+    else $_GET['id']=$_SESSION["last Patient"];
+    ?>
     <section id="main-content">
         <section class="wrapper">
             <div class="container">
-              <div class="col-lg-8">
-                <!--Project Activity start-->
-                <section class="panel">
-                  <div class="panel-body progress-panel">
-                    <div class="row">
-                      <div class="col-lg-8 task-progress pull-left">
-                        <h1>Profile Patient</h1>
-                      </div>
-                    </div>
-                  </div>
-                  <table class="table table-hover personal-task">
-                    <tbody>
-                        
-                        <?php
-                        include "add_patient_profile.php" ;
-                        ?>
-
-                        <td>
-                          <span class="badge bg-success">Résident</span>
-                          <span class="badge bg-warning">Non Résident</span>
-                        </td>
-                        <td>
-                          <div class="btn-row">
-                            <div class="btn-group">
-                              <button type="button" class="btn btn-info">Dossier Medical</button>
-                              <button type="button" class="btn btn-info active">Compte CNSS</button>
-                              <button type="button" class="btn btn-info">Couverture CNAM</button>
+                <div class="col-lg-8">
+                    <!--Project Activity start-->
+                    <section class="panel">
+                        <div class="panel-body progress-panel">
+                            <div class="row">
+                                <div class="col-lg-8 task-progress pull-left">
+                                    <h1>Profile Patient</h1>
+                                </div>
                             </div>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </section>
-                <!--Project Activity end-->
-            <!-- all the page content goes here -->
-              </div>
+                        </div>
+                        <table class="table table-hover personal-task">
+                            <tbody>
+
+                            <?php
+                            include "add_patient_profile.php";
+                            ?>
+
+
+                            <td>
+                                <span class="badge bg-success">Résident</span>
+                                <span class="badge bg-warning">Non Résident</span>
+                            </td>
+                            <td>
+                                <div class="btn-row">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-info">Dossier Medical</button>
+                                        <button type="button" class="btn btn-info active">Compte CNSS</button>
+                                        <button type="button" class="btn btn-info">Couverture CNAM</button>
+                                    </div>
+                                </div>
+                            </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                    <!--Project Activity end-->
+                    <!-- all the page content goes here -->
+                </div>
 
                 <div class="col-lg-4">
-                <section class="panel">
-                  <div class="panel-body progress-panel">
-                    <div class="row">
-                      <div class="col-lg-8 task-progress pull-left">
-                          <h1 style="padding-left:45%"><a href="#demo" class="btn btn-basic" data-toggle="collapse">Rendez-vous</a></h1>
-                      </div>
-                    </div>
-                </div>
-                    <div id="demo" class="collapse">
-                    <table class="table table-hover personal-task">
-                        <tbody>
-                        <tr>
-                            <td>
-                                <div class="form-group">
-                                    <div class="col-sm-12">
-                                        <input type="date" class="form-control" id="dater" placeholder="Date Rendez-vous" name="nom">
-                                    </div>
+                    <section class="panel">
+                        <div class="panel-body progress-panel">
+                            <div class="row">
+                                <div class="col-lg-8 task-progress pull-left">
+                                    <h1 style="padding-left:45%"><a href="#demo" class="btn btn-basic" data-toggle="collapse">Rendez-vous</a></h1>
+                                    <?php if($_SESSION["rendez_vous"]!=0)
+                                    {echo "<h6 style='padding-left:30%;color: red;'>";
+                                       if($_SESSION["ajout_vous"])
+                                                    echo "ajout du rendez vous avec succes" ;
+                                       else echo "le Docteur n'est pas disponible a cette date";
+                                       echo"</h6>";}?>
                                 </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center;">
-                                choisir departement:
-                                <select class="selectpicker">
-                                    <option disabled selected hidden>choisir departement:</option>
-                                  <option>médecine générale</option>
-                                  <option>radiologie</option>
-                                  <option>chirurgie</option>
-                                  <option>cardiologie</option>
-                                  <option>neurologie</option>
-                                  <option>Pédiatrie</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center;">
-                                <div class="form-group">
-                                    <div class="col-sm-12">
-                                       <button type="button" class="btn btn-info">Enregistrer</button>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    </div>
-            </section>
+                            </div>
+                        </div>
+                        <div id="demo" >
+                            <form name="rendez-vous"  action="gestion_ajout_rendez-vous.php" method="post">
+                                <input name="id" style="visibility: hidden" value="<?php $_GET['id'] ?>" >
+                            <table class="table table-hover personal-task">
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <label>Date</label><input type="date" class="form-control"
+                                                                          min="<?php echo date("Y-m-d"); ?>" id="dater"
+                                                                          placeholder="Date Rendez-vous" name="date">
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center;">
+                                        choisir docteur:
+
+                                        <select class="selectpicker" name="medecin">
+                                            <option disabled selected hidden>choisir medecin:</option>
+                                            <?php
+                                            require "ajout_rendez-vous.php";
+                                            parcourMedecin();
+                                            ?>
+                                        </select>
+
+                                    </td>
+                                </tr>
+                                <tr>
+
+                                    <td style="text-align: center;">
+                                    <input name="hour" type="number" min="8" , max="18" name="H">
+                                    <select class="selectpicker" name="minute">
+                                        <option>00</option>
+                                        <option>30</option>
+                                    </select>
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+                                    <td style="text-align: center;">
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <input type="submit" class="btn btn-info" >Enregistrer</input>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            </form>
+                        </div>
+                    </section>
 
                 </div>
             </div>
@@ -280,7 +311,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 text-center">
-                    &copy; 2018  INSAT TEK-CARE.. All rights Reserved
+                    &copy; 2018 INSAT TEK-CARE.. All rights Reserved
                 </div>
             </div>
         </div>

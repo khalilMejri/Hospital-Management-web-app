@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 21, 2018 at 01:56 PM
--- Server version: 5.7.21
--- PHP Version: 5.6.35
+-- Generation Time: Apr 28, 2018 at 01:49 PM
+-- Server version: 5.7.19
+-- PHP Version: 5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -53,7 +53,16 @@ CREATE TABLE IF NOT EXISTS `department` (
   `Label` varchar(256) NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `Chief_ID` (`Chief_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `department`
+--
+
+INSERT INTO `department` (`ID`, `Chief_ID`, `Label`) VALUES
+(1, 1243452, 'médecine générale'),
+(2, 1243452, 'radiologie'),
+(3, 1243452, 'chirurgie');
 
 -- --------------------------------------------------------
 
@@ -64,12 +73,19 @@ CREATE TABLE IF NOT EXISTS `department` (
 DROP TABLE IF EXISTS `doctor`;
 CREATE TABLE IF NOT EXISTS `doctor` (
   `Doctor_CIN` bigint(20) NOT NULL,
-  `RegistrationNumber` bigint(20) NOT NULL,
+  `RegistrationNumber` bigint(20) NOT NULL AUTO_INCREMENT,
   `Grade` varchar(256) NOT NULL,
   `Speciality` varchar(256) NOT NULL,
   PRIMARY KEY (`Doctor_CIN`),
   UNIQUE KEY `RegistrationNumber` (`RegistrationNumber`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `doctor`
+--
+
+INSERT INTO `doctor` (`Doctor_CIN`, `RegistrationNumber`, `Grade`, `Speciality`) VALUES
+(1243452, 1, '', 'cardiologie');
 
 -- --------------------------------------------------------
 
@@ -101,25 +117,26 @@ DROP TABLE IF EXISTS `meeting`;
 CREATE TABLE IF NOT EXISTS `meeting` (
   `Doctor_CIN` bigint(20) NOT NULL,
   `Patient_CIN` bigint(20) NOT NULL,
-  `Date` varchar(64) NOT NULL,
-  `Description` varchar(256) NOT NULL,
+  `Date` datetime NOT NULL,
+  `Description` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`Doctor_CIN`,`Date`),
   KEY `Patient_CIN` (`Patient_CIN`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `nurse`
+-- Dumping data for table `meeting`
 --
 
-DROP TABLE IF EXISTS `nurse`;
-CREATE TABLE IF NOT EXISTS `nurse` (
-  `Nurse_CIN` bigint(20) NOT NULL,
-  `Other_ATTR1` varchar(64) NOT NULL,
-  `Other_ATTR2` varchar(64) NOT NULL,
-  PRIMARY KEY (`Nurse_CIN`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `meeting` (`Doctor_CIN`, `Patient_CIN`, `Date`, `Description`) VALUES
+(1243452, 12838225, '2012-12-12 00:00:00', ''),
+(1243452, 12838225, '2018-04-28 00:00:00', ''),
+(1243452, 12838225, '2018-04-29 00:00:00', ''),
+(1243452, 12838225, '2018-04-29 08:00:00', ' '),
+(1243452, 12838225, '2018-04-29 09:00:00', ' '),
+(1243452, 12838225, '2018-04-29 11:00:00', ' '),
+(1243452, 12838225, '2018-04-29 12:00:00', ' '),
+(1243452, 12838225, '2018-04-30 10:00:00', ' '),
+(1243452, 12838225, '2018-05-03 08:00:00', ' ');
 
 -- --------------------------------------------------------
 
@@ -160,6 +177,7 @@ CREATE TABLE IF NOT EXISTS `person` (
   `Passport` bigint(20) DEFAULT NULL,
   `Adress` varchar(64) DEFAULT NULL,
   `PhoneNumber` bigint(20) DEFAULT NULL,
+  `Birthday` date DEFAULT NULL,
   PRIMARY KEY (`CIN`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -167,8 +185,9 @@ CREATE TABLE IF NOT EXISTS `person` (
 -- Dumping data for table `person`
 --
 
-INSERT INTO `person` (`FirstName`, `LastName`, `Gender`, `CIN`, `Passport`, `Adress`, `PhoneNumber`) VALUES
-('Sami', 'Belaid', 'homme', 12838225, NULL, 'Cité Olympique', 92545567);
+INSERT INTO `person` (`FirstName`, `LastName`, `Gender`, `CIN`, `Passport`, `Adress`, `PhoneNumber`, `Birthday`) VALUES
+('Slama', 'Ali', 'homme', 1243452, 452452475, 'kalaa', 545412, '2000-04-08'),
+('Sami', 'Belaid', 'homme', 12838225, 7657, 'Cité Olympique', 92545567, '1963-04-12');
 
 -- --------------------------------------------------------
 
@@ -250,12 +269,6 @@ ALTER TABLE `doctor`
 ALTER TABLE `meeting`
   ADD CONSTRAINT `meeting_ibfk_1` FOREIGN KEY (`Doctor_CIN`) REFERENCES `doctor` (`Doctor_CIN`),
   ADD CONSTRAINT `meeting_ibfk_2` FOREIGN KEY (`Patient_CIN`) REFERENCES `patient` (`Patient_CIN`);
-
---
--- Constraints for table `nurse`
---
-ALTER TABLE `nurse`
-  ADD CONSTRAINT `nurse_ibfk_1` FOREIGN KEY (`Nurse_CIN`) REFERENCES `person` (`CIN`);
 
 --
 -- Constraints for table `patient`
