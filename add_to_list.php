@@ -19,17 +19,16 @@
             <td><a href='patient_profile.php?docID=$info->Medical_DOC_ID&id=$info->CIN'>$info->FirstName</a></td>
             <td>$info->LastName</td>
             <td>$info->Gender</td>
-            <td>$info->BirthDay</td>
+            <td>$info->Birthday</td>
             <td>$info->CIN</td>";
         if($info->isHere==1)
             echo
-            "<td><img src='imgs/ishere.png' style='width: 32px;height: 32px;margin: auto;    display: block;'> </td>";
+            "<td><img src='imgs/ishere.png' style='width: 32px;height: 32px;margin: auto;    display: block;'> </td> </tr>";
         else
             echo
-            "<td><img src='imgs/isnothere.png' style='width: 32px;height: 32px;margin: auto;    display: block;'></td>";
-        echo
-            "<td style='text-align: center'><a href='delete_patient.php?docID=$info->Medical_DOC_ID&id=$info->CIN'><button type=\"button\" class=\"btn btn-danger\">Delete!</button></a></td>
-        </tr>";
+            "<td><img src='imgs/isnothere.png' style='width: 32px;height: 32px;margin: auto;    display: block;'></td> </tr>";
+
+
     endforeach;
 
 

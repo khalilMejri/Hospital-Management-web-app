@@ -62,17 +62,8 @@
 
                     if(isset($_POST['Connexion'])){
 
-                        try {
-                          $db_connexion = new PDO('mysql:host=localhost;dbname=hospital_db', 'root', '',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-
-                        }
-                        catch (PDOException $e)
-                        {
-                            print "Erreur : " . $e->getMessage();
-                            die();
-                        }
-
-
+                        include "php/CnxBD.php";
+                        $db_connexion = CnxBD::getInstance();
                     $req = $db_connexion->prepare('SELECT Username,Password FROM receptionist WHERE Username = :Username AND Password= :Password');
 
                     $user_name=$_POST['username'];

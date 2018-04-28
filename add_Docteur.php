@@ -13,9 +13,9 @@
         $req = $bd->prepare('INSERT INTO hospital_db.person (FirstName, LastName, Gender, CIN, Adress, PhoneNumber,BirthDay) VALUES(:FirstName, :LastName, :Gender, :CIN, :Adress, :PhoneNumber,:BirthDay)');
         $req->execute(array(
 
-            'FirstName' => trim($_POST['nom']),
+            'FirstName' => htmlspecialchars(trim($_POST['nom'])),
 
-            'LastName' => trim($_POST['prenom']),
+            'LastName' => htmlspecialchars(trim($_POST['prenom'])),
 
             'Gender' => $_POST['sexe'],
 
@@ -23,7 +23,7 @@
 
             'PhoneNumber' => $_POST['numero'],
 
-            'Adress' => trim($_POST['adresse']),
+            'Adress' => htmlspecialchars(trim($_POST['adresse'])),
 
             'BirthDay' => $_POST['date']
 
@@ -37,7 +37,7 @@
             'Grade' => trim($_POST['grade']),
             'Speciality' => $_POST['specialite']
         ));
-        header("");
+        header("Location:doctor_listing.php");
     }catch (PDOException $e){
         echo $e->getMessage();
     }
