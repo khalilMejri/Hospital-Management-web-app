@@ -10,21 +10,19 @@
 
     <title>Projet web GL2 ></title>
 
-
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- bootstrap theme -->
     <link href="css/bootstrap-theme.css" rel="stylesheet">
     <!--external css-->
     <!-- font icon -->
-    <link href="css/elegant-icons-style.css" rel="stylesheet"/>
-    <link href="css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="css/elegant-icons-style.css" rel="stylesheet" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
     <!-- Custom styles -->
     <link href="css/custom.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/style-responsive.css" rel="stylesheet"/>
-    <link href="DataTables/datatables.css" rel="stylesheet"/>
-
+    <link href="css/style-responsive.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/bootstrap-select.min.css" type="text/css"/>
 
 </head>
 
@@ -34,8 +32,7 @@
 
     <header class="header dark-bg">
         <div class="toggle-nav">
-            <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i
-                        class="icon_menu"></i></div>
+            <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i class="icon_menu"></i></div>
         </div>
 
         <!--logo start-->
@@ -179,49 +176,121 @@
 
     <!--main content start-->
     <section id="main-content">
-        <section class="wrapper">
-
-            <!-- all the page content goes here -->
-
-        </section>
-    </section>
-    <!--main content end-->
-
-    <section id="main-content">
+       <?php
+           $id = $_GET['id'];
+           $docID = $_GET['docID'];
+         echo"<form class='form-horizontal' action='modification_fich.php?id=$id & docID=$docID' method='post' >"
+       ?>
         <section class="wrapper">
 
             <div class="container">
-                <!-- all the page content goes here -->
-
-                <table id="Patient" data-pagination="true" data-search="true" data-toggle="table"
-                       class="table table-striped table-bordered table-hover  ">
-                    <thead>
-                    <tr >
-                        <th style="text-align: center">FirstName</th>
-                        <th style="text-align: center">LastName</th>
-                        <th style="text-align: center">Gender</th>
-                        <th style="text-align: center">Date de naissance</th>
-                        <th style="text-align: center">CIN</th>
-                        <th style="text-align: center">Presence</th>
-                    </tr>
-                    </thead>
+                <div class="col-lg-9">
+                    <!--Project Activity start-->
+                    <section class="panel panel-info">
+                        <div class="panel-heading progress-panel" ">
+                        <div class="row">
+                            <h1 style="text-align: center">Fiche medicale <?php echo $_GET['docID'];?></h1>
+                        </div>
+                </div>
+                <table class="table table-hover personal-task">
                     <tbody>
-                    <?php
+                    <form class="form-horizontal" action="modification_fich.php" method="post" >
+                        <tr>
+                            <td><b>Groupe sanguin</b></td>
+                            <td>
+                                <select class="selectpicker" data-width="50%" name="Groupe_Sanguin">
+                                    <option disabled selected hidden>choisir Groupe sanguin:</option>
+                                    <option>A+</option>
+                                    <option>A-</option>
+                                    <option>B+</option>
+                                    <option>B-</option>
+                                    <option>AB+</option>
+                                    <option>AB-</option>
+                                    <option>O+</option>
+                                    <option>O-</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Allergie et reaction</b></td>
+                            <td><input  style="width: 50%" type="text" name="Allergie" placeholder="remplir" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td><b>poids</b> </td>
+                            <td><input style="width: 50%" type="text" name="Poids" placeholder="entrer le poids" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td><b>Taille</b></td>
+                            <td><input  style="width: 50%" type="text" name="Taille" placeholder="entrer la taille"class="form-control"> </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: center">
+                                <a href="#demo" class="btn btn-basic" data-toggle="collapse" style="font-size: large">Consultez les visites</a>
 
-                        include "add_to_list.php";
-                    ?>
+                                <div id="demo" class="collapse">
+                                    <table class="table table-hover personal-task">
+                                        <tbody>
+
+                                                    <?php
+                                                        include "php/CnxBD.php";
+                                                        $cin=$_GET['id'];
+                                                        $docID=$_GET['docID'];
+                                                        $bd = CnxBD::getInstance();
+                                                        $req = $bd->query("select * from hospital_db.patient,hospital_db.medical_doc,hospital_db.meeting WHERE patient.Patient_CIN=$cin AND patient.Medical_DOC_ID=$docID AND medical_doc.ID=$docID AND patient.Medical_DOC_ID=medical_doc.ID AND patient.Patient_CIN=meeting.Patient_CIN ");
+                                                        //$req->execute(array($_GET['id'], $_GET['docID'], $_GET['docID']));
+                                                        $infos= $req->fetchAll(PDO::FETCH_OBJ);
+                                                    $b=0;
+                                                    foreach ($infos as $info):
+                                                        if(isset($info->Date))
+                                                        {
+                                                            $b=1;
+                                                                                echo "
+                                                                    <tr>
+                                                                        <td>
+                                                                            <b>visite de $info->Date:</b><br>
+                                                                            $info->Description
+                                                                        </td>
+                                                                        </tr>";
+                                                        }
+                                                    endforeach;
+                                                    if($b==0)
+                                                        echo
+                                                        "
+                                                         <tr>
+                                                    <td>
+                                                        il n'y a pas encore des visites 
+                                                    </td>
+                                                    </tr>
+                                                         ";
+                                                    ?>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+
                     </tbody>
-
                 </table>
-            </div>
+
         </section>
+        <div class="container">
+            <div class="col-lg-9">
+        <button style="margin-left: 100%" type="submit" class="btn btn-success">Enregistrer modifications</button>
+            </div>
+        </div>
+        </form>
     </section>
+    </section>
+    <!--main content end-->
+
+
     <!-- page footer -->
-    <footer class="copyright col-sm-3">
+    <footer class="copyright col-sm-3" style="position: fixed">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 text-center">
-                    &copy; 2018 INSAT TEK-CARE.. All rights Reserved
+                    &copy; 2018  INSAT TEK-CARE.. All rights Reserved
                 </div>
             </div>
         </div>
@@ -231,15 +300,9 @@
 <!-- container section start -->
 
 <!-- javascripts -->
-
-
+<script src="js/jquery.js"></script>
 <script src="js/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" charset="utf8" src="DataTables/datatables.js"></script>
-<script>$(document).ready(function () {
-        $('#Patient').DataTable();
-    });
-</script>
-
+<!-- bootstrap -->
 <script src="js/bootstrap.min.js"></script>
 <!-- nice scroll -->
 <script src="js/jquery.scrollTo.min.js"></script>
@@ -247,5 +310,7 @@
 <script src="js/jquery-ui.js"></script>
 <!-- custom script for this page-->
 <script src="js/scripts.js"></script>
+<script src="js/bootstrap-select.min.js"></script>
 
-</html>
+</body>
+

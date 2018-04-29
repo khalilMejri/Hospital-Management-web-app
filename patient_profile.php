@@ -220,10 +220,12 @@
                             <td>
                                 <div class="btn-row">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-info">Dossier Medical</button>
-                                        <button type="button" class="btn btn-info active">Compte CNSS</button>
-                                        <button type="button" class="btn btn-info">Couverture CNAM</button>
-                                    </div>
+                                        <?php
+                                            $id=$_GET['id'];
+                                            $docID=$_GET['docID'];
+                                             echo"<a href='Dossier_Medical.php?id=$id &docID=$docID'><button type='button' class='btn btn-info'>Dossier Medical</button></a>";
+                                         ?>
+                                        </div>
                                 </div>
                             </td>
                             </tr>

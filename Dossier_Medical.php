@@ -10,21 +10,18 @@
 
     <title>Projet web GL2 ></title>
 
-
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- bootstrap theme -->
     <link href="css/bootstrap-theme.css" rel="stylesheet">
     <!--external css-->
     <!-- font icon -->
-    <link href="css/elegant-icons-style.css" rel="stylesheet"/>
-    <link href="css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="css/elegant-icons-style.css" rel="stylesheet" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
     <!-- Custom styles -->
     <link href="css/custom.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/style-responsive.css" rel="stylesheet"/>
-    <link href="DataTables/datatables.css" rel="stylesheet"/>
-
+    <link href="css/style-responsive.css" rel="stylesheet" />
 
 </head>
 
@@ -34,8 +31,7 @@
 
     <header class="header dark-bg">
         <div class="toggle-nav">
-            <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i
-                        class="icon_menu"></i></div>
+            <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i class="icon_menu"></i></div>
         </div>
 
         <!--logo start-->
@@ -181,47 +177,38 @@
     <section id="main-content">
         <section class="wrapper">
 
-            <!-- all the page content goes here -->
+            <div class="container">
+                <div class="col-lg-9">
+                    <!--Project Activity start-->
+                    <section class="panel panel-info">
 
+                                <?php
+                                    include 'load_medical_doc.php';
+                                ?>
+                            </tbody>
+                        </table>
         </section>
+                    <div class="container">
+                        <div class="col-lg-10">
+                           <?php
+
+                                            $id=$_GET['id'];
+                                            $docID=$_GET['docID'];
+                                    echo"<a href='modifier_doss_medicale.php?id=$id & docID=$docID'><button style='margin-left: 100%' type='button' class='btn btn-success'>Modifier fiche medicale</button></a>";
+                            ?>
+                        </div>
+                    </div>
+    </section>
     </section>
     <!--main content end-->
 
-    <section id="main-content">
-        <section class="wrapper">
 
-            <div class="container">
-                <!-- all the page content goes here -->
-
-                <table id="Patient" data-pagination="true" data-search="true" data-toggle="table"
-                       class="table table-striped table-bordered table-hover  ">
-                    <thead>
-                    <tr >
-                        <th style="text-align: center">FirstName</th>
-                        <th style="text-align: center">LastName</th>
-                        <th style="text-align: center">Gender</th>
-                        <th style="text-align: center">Date de naissance</th>
-                        <th style="text-align: center">CIN</th>
-                        <th style="text-align: center">Presence</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-
-                        include "add_to_list.php";
-                    ?>
-                    </tbody>
-
-                </table>
-            </div>
-        </section>
-    </section>
     <!-- page footer -->
-    <footer class="copyright col-sm-3">
+    <footer class="copyright col-sm-3" style="position: fixed">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 text-center">
-                    &copy; 2018 INSAT TEK-CARE.. All rights Reserved
+                    &copy; 2018  INSAT TEK-CARE.. All rights Reserved
                 </div>
             </div>
         </div>
@@ -231,15 +218,9 @@
 <!-- container section start -->
 
 <!-- javascripts -->
-
-
+<script src="js/jquery.js"></script>
 <script src="js/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" charset="utf8" src="DataTables/datatables.js"></script>
-<script>$(document).ready(function () {
-        $('#Patient').DataTable();
-    });
-</script>
-
+<!-- bootstrap -->
 <script src="js/bootstrap.min.js"></script>
 <!-- nice scroll -->
 <script src="js/jquery.scrollTo.min.js"></script>
@@ -247,5 +228,7 @@
 <script src="js/jquery-ui.js"></script>
 <!-- custom script for this page-->
 <script src="js/scripts.js"></script>
+
+</body>
 
 </html>
