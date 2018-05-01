@@ -1,3 +1,10 @@
+<?php session_start();
+if(isset($_GET['id']))
+    $_SESSION["last Patient"]= $_GET['id'] ;
+else $_GET['id']=$_SESSION["last Patient"];
+if(isset($_GET['docID']))
+    $_SESSION["last docID"]=$_GET['docID'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -178,11 +185,7 @@
     <!--sidebar end-->
 
     <!--main content start-->
-    <?php session_start();
-    if(isset($_GET['id']))
-        $_SESSION["last Patient"]= $_GET['id'] ;
-    else $_GET['id']=$_SESSION["last Patient"];
-    ?>
+
     <section id="main-content">
         <section class="wrapper">
             <div class="row">
@@ -207,12 +210,9 @@
                         </div>
                         <table class="table table-hover personal-task">
                             <tbody>
-
                             <?php
                             include "add_patient_profile.php";
                             ?>
-
-
                             <td>
                                 <span class="badge bg-success">Résident</span>
                                 <span class="badge bg-warning">Non Résident</span>
@@ -221,8 +221,8 @@
                                 <div class="btn-row">
                                     <div class="btn-group">
                                         <?php
-                                            $id=$_GET['id'];
-                                            $docID=$_GET['docID'];
+                                            $id=$_SESSION["last Patient"];
+                                            $docID=$_SESSION["last docID"];
                                              echo"<a href='Dossier_Medical.php?id=$id &docID=$docID'><button type='button' class='btn btn-info'>Dossier Medical</button></a>";
                                          ?>
                                         </div>
@@ -242,12 +242,14 @@
                             <div class="row">
                                 <div class="col-lg-8 task-progress pull-left">
                                     <h1 style="padding-left:45%"><a href="#demo" class="btn btn-basic" data-toggle="collapse">Rendez-vous</a></h1>
-                                    <?php if($_SESSION["rendez_vous"]!=0)
+                                    <?php if(isset($_SESSION["rendez_vous"]))
+                                    if($_SESSION["rendez_vous"]!=0)
                                     {echo "<h6 style='padding-left:30%;color: red;'>";
                                        if($_SESSION["ajout_vous"])
                                                     echo "ajout du rendez vous avec succes" ;
                                        else echo "le Docteur n'est pas disponible a cette date";
-                                       echo"</h6>";}?>
+                                       echo"</h6>";
+                                    $_SESSION["rendez_vous"]=0 ;}?>
                                 </div>
                             </div>
                         </div>

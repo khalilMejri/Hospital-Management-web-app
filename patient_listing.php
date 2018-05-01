@@ -207,8 +207,7 @@
                     </thead>
                     <tbody>
                     <?php
-
-                        include "add_to_list.php";
+                        include "add_to_list_patient.php";
                     ?>
                     </tbody>
 

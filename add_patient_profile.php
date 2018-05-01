@@ -5,11 +5,12 @@
  * Date: 4/23/2018
  * Time: 5:45 PM
  */
+
                     include "php/CnxBD.php" ;
         try {
             $bd = CnxBD::getInstance();
             $req = $bd->prepare("select * from person,patient,medical_doc WHERE person.CIN=? AND patient.Patient_ID=? AND medical_doc.ID=?");
-            $req->execute(array($_GET['id'], $_GET['docID'], $_GET['docID']));
+            $req->execute(array($_SESSION["last Patient"], $_SESSION["last docID"], $_SESSION["last docID"]));
             $info = $req->fetch(PDO::FETCH_OBJ);
         }
         catch (PDOException $e)
