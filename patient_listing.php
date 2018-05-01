@@ -200,7 +200,7 @@
                         <th style="text-align: center">FirstName</th>
                         <th style="text-align: center">LastName</th>
                         <th style="text-align: center">Gender</th>
-                        <th style="text-align: center">Date de naissance</th>
+                        <th style="text-align: center">Age</th>
                         <th style="text-align: center">CIN</th>
                         <th style="text-align: center">Presence</th>
                     </tr>
@@ -235,7 +235,12 @@
 <script src="js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" charset="utf8" src="DataTables/datatables.js"></script>
 <script>$(document).ready(function () {
-        $('#Patient').DataTable();
+        $('#Patient').DataTable(
+		{
+            columnDefs: [
+                { type: 'title-string', targets: 5 }
+            ]
+        });
     });
 </script>
 
