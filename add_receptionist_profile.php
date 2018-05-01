@@ -1,3 +1,13 @@
+<?php
+session_start();
+if((!isset($_SESSION['user']))||(!isset($_SESSION['passwd'])))
+    header("Location: login.php");
+$login=$_SESSION['user'];
+$passwd=$_SESSION['passwd'];
+$photo=$_SESSION['Photo'];
+$FirstName=$_SESSION['FirstName'];
+$LastName=$_SESSION['LastName'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +32,9 @@
     <link href="css/custom.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/style-responsive.css" rel="stylesheet" />
-    <link rel="stylesheet" href="css/bootstrap-select.min.css" type="text/css"/>
+
+    <!-- Style of the profilePage -->
+    <link href="css/profileReceptionist.css" />
 
 </head>
 
@@ -58,15 +70,15 @@
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="profile-ava">
-                                <img alt="" src="imgs/avatar1_small.jpg">
+                                 <?php echo"<img alt=$photo.\" src=\"imgs/$photo\" width='45' height='45' class=\"img-circle img-responsive\">" ?>
                             </span>
-                        <span class="username">Foulen ben Foulen</span>
+                        <span class="username"><?php echo $FirstName." ".$LastName ?></span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu extended logout">
                         <div class="log-arrow-up"></div>
                         <li class="eborder-top">
-                            <a href="#"><i class="icon_profile"></i> Mon Profil </a>
+                            <a href="receptionist_profile.php"><i class="icon_profile"></i> Mon Profil </a>
                         </li>
                         <li>
                             <a href="#"><i class="icon_mail_alt"></i> Inbox </a>
@@ -161,7 +173,7 @@
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="profile.html">Profile</a></li>
+                        <li><a class="" href="profileReceptioniste.html">Profile</a></li>
                         <li><a class="" href="historiques.html"><span>Historiques</span></a></li>
                         <li><a class="" href="actualites.html">Actualités</a></li>
                         <li><a class="" href="info.html">A propos</a></li>
@@ -176,117 +188,106 @@
 
     <!--main content start-->
     <section id="main-content">
-       <?php
-           $id = $_GET['id'];
-           $docID = $_GET['docID'];
-         echo"<form class='form-horizontal' action='modification_fich.php?id=$id & docID=$docID' method='post' >"
-       ?>
         <section class="wrapper">
+            <!-- all the page content goes here -->
+            <?php
+            require "php/CnxBD.php";
+            $mDBConnection=CnxBD::getInstance();
+            $req0 =$mDBConnection->prepare("SELECT `Receptionist_CIN` FROM `receptionist` WHERE `Username`=? AND `Password`=?");
+            $req0->execute(array($login,$passwd));
+            $id=$req0->fetch(PDO::FETCH_OBJ);
+            $req1 =$mDBConnection->prepare("SELECT `FirstName`,`LastName`,`CIN`,`Passport`,`RegistrationNumber`,`Email`,`Username`,`Password`,`Gender`,`Adress`,`PhoneNumber`,`Photo` FROM `person`,`receptionist` WHERE `CIN`=? AND `Receptionist_CIN`=?");
+            $req1->execute(array($id->Receptionist_CIN,$id->Receptionist_CIN));
+            $receptionist=$req1->fetch(PDO::FETCH_OBJ);
+            ?>
 
-            <div class="container">
-                <div class="col-lg-9">
-                    <!--Project Activity start-->
-                    <section class="panel panel-info">
-                        <div class="panel-heading progress-panel" ">
-                        <div class="row">
-                            <h1 style="text-align: center">Fiche medicale <?php echo $_GET['docID'];?></h1>
-                        </div>
+            <div class="panel" >
+                <div id="recep_panel" class="panel-heading " >
+                    <h3 class="panel-title" >Modifier votre profile</h3>
                 </div>
-                <table class="table table-hover personal-task">
-                    <tbody>
-                    <form class="form-horizontal" action="modification_fich.php" method="post" >
-                        <tr>
-                            <td><b>Groupe sanguin</b></td>
-                            <td>
-                                <select class="selectpicker" data-width="50%" name="Groupe_Sanguin">
-                                    <option disabled selected hidden>choisir Groupe sanguin:</option>
-                                    <option name="Groupe_Sanguin" value=A+"">A+</option>
-                                    <option name="Groupe_Sanguin" value="A-">A-</option>
-                                    <option name="Groupe_Sanguin" value="B+">B+</option>
-                                    <option name="Groupe_Sanguin" value="B-">B-</option>
-                                    <option name="Groupe_Sanguin" value="AB+">AB+</option>
-                                    <option name="Groupe_Sanguin" value="AB-">AB-</option>
-                                    <option name="Groupe_Sanguin" value="O+">O+</option>
-                                    <option name="Groupe_Sanguin" value="O-">O-</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><b>Allergie et reaction</b></td>
-                            <td><input  style="width: 50%" type="text" name="Allergie" placeholder="remplir" class="form-control"></td>
-                        </tr>
-                        <tr>
-                            <td><b>poids</b> </td>
-                            <td><input style="width: 50%" type="text" name="Poids" placeholder="entrer le poids" class="form-control"></td>
-                        </tr>
-                        <tr>
-                            <td><b>Taille</b></td>
-                            <td><input  style="width: 50%" type="text" name="Taille" placeholder="entrer la taille"class="form-control"> </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" style="text-align: center">
-                                <a href="#demo" class="btn btn-basic" data-toggle="collapse" style="font-size: large">Consultez les visites</a>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class=" col-md-9 col-lg-9 ">
+                            <form action="save_receptionist_profile.php" method="post" enctype="multipart/form-data">
+                                <table class="table table-user-information">
+                                    <tbody>
+                                    <tr>
+                                        <td>Nom:</td>
+                                        <td><input class="form-control" name="lastName" required="required" value=<?php echo $receptionist->LastName ?>><input type="hidden" name="cartein" id="hiddenField" value="<?php echo $id->Receptionist_CIN ?>" /></td>
+                                    </tr>
+                                    <tr>
 
-                                <div id="demo" class="collapse">
-                                    <table class="table table-hover personal-task">
-                                        <tbody>
+                                        <td>Prenom:</td>
+                                        <td><input value=<?php echo $receptionist->FirstName ?> class="form-control" name="firstName" required="required"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Photo :
+                                        </td>
+                                        <td>
+                                            <input type="file" name="fichier" />
+                                        </td></tr>
+                                    <tr>
+                                        <td>Numero PASSEPORT:</td>
+                                        <td><input class="form-control" name="passeport" type="number" value=<?php echo $receptionist->Passport ?>></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Matricule</td>
+                                        <td><input  class="form-control" name="matricule" required="required" value=<?php echo $receptionist->RegistrationNumber ?>></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Genre</td>
+                                        <?php if ($receptionist->Gender=="Homme")
+                                            echo "<td><input  type=\"radio\" name=\"genre\" value=\"Homme\" ID=\"Homme\" checked=\"checked\">Homme   <input  type=\"radio\" name=\"genre\" value=\"Femme\">Femme</td>";
+                                        else if ($receptionist->Gender!="Homme")
+                                            echo "<td><input  type=\"radio\" name=\"genre\" value=\"Homme\" ID=\"Homme\" >Homme   <input  type=\"radio\" name=\"genre\" value=\"Femme\" checked=\"checked\">Femme</td>";
 
-                                                    <?php
-                                                        include "php/CnxBD.php";
-                                                        $cin=$_GET['id'];
-                                                        $docID=$_GET['docID'];
-                                                        $bd = CnxBD::getInstance();
-                                                        $req = $bd->query("select * from hospital_db.patient,hospital_db.medical_doc,hospital_db.meeting WHERE patient.Patient_CIN=$cin AND patient.Medical_DOC_ID=$docID AND medical_doc.ID=$docID AND patient.Medical_DOC_ID=medical_doc.ID AND patient.Patient_CIN=meeting.Patient_CIN ");
-                                                        //$req->execute(array($_GET['id'], $_GET['docID'], $_GET['docID']));
-                                                        $infos= $req->fetchAll(PDO::FETCH_OBJ);
-                                                    $b=0;
-                                                    foreach ($infos as $info):
-                                                        if(isset($info->Date))
-                                                        {
-                                                            $b=1;
-                                                                                echo "
-                                                                    <tr>
-                                                                        <td>
-                                                                            <b>visite de $info->Date:</b><br>
-                                                                            $info->Description
-                                                                        </td>
-                                                                        </tr>";
-                                                        }
-                                                    endforeach;
-                                                    if($b==0)
-                                                        echo
-                                                        "
-                                                         <tr>
-                                                    <td>
-                                                        il n'y a pas encore des visites 
-                                                    </td>
-                                                    </tr>
-                                                         ";
-                                                    ?>
+                                        ?>
+                                    </tr>
+                                    <tr>
+                                        <td>Adresse: </td>
+                                        <td><input class="form-control" name="adresse" required="required" value=<?php echo $receptionist->Adress ?>></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email: </td>
+                                        <td><input class="form-control" name="email" type="email" value=<?php echo $receptionist->Email ?>></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Numéro Téléphone</td>
+                                        <td><input class="form-control" type="number" name="num" required="required" value=<?php echo $receptionist->PhoneNumber ?>></td>
+                                    </tr>
+                                    <tr>
+                                        <td>nom d'utilisateur:</td>
+                                        <td><input class="form-control" name="login" required="required" value=<?php echo $receptionist->Username ?>></td>
+                                    </tr>
+                                    <tr>
+                                        <td>mot de passe :</td>
+                                        <td><input name="mdp" class="form-control"type="password" required="required" value=<?php echo $receptionist->Password ?>></td>
+                                    </tr>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" align="center">
+                                            <input class="btn btn-success" type="submit" name="valider" style="margin: 5px;">
+                                            <input class="btn btn-danger" type="reset" name=Effacer>
+                                        </td>
 
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </td>
-                        </tr>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
 
-                    </tbody>
-                </table>
 
-        </section>
-        <div class="container">
-            <div class="col-lg-9">
-        <button style="margin-left: 100%" type="submit" class="btn btn-success">Enregistrer modifications</button>
+                    </div>
+                </div>
             </div>
-        </div>
-        </form>
-    </section>
+        </section>
     </section>
     <!--main content end-->
 
 
     <!-- page footer -->
-    <footer class="copyright col-sm-3" style="position: fixed">
+    <footer class="copyright col-sm-3">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 text-center">
@@ -305,12 +306,12 @@
 <!-- bootstrap -->
 <script src="js/bootstrap.min.js"></script>
 <!-- nice scroll -->
-<script src="js/jquery.scrollTo.min.js"></script>
+<script src="jas/jquery.scrollTo.min.js"></script>
 <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
 <script src="js/jquery-ui.js"></script>
 <!-- custom script for this page-->
 <script src="js/scripts.js"></script>
-<script src="js/bootstrap-select.min.js"></script>
 
 </body>
 
+</html>

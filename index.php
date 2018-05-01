@@ -76,7 +76,7 @@
             <ul class="dropdown-menu extended logout">
               <div class="log-arrow-up"></div>
               <li class="eborder-top">
-                <a href="#"><i class="icon_profile"></i> Mon Profil </a>
+                <a href="receptionist_profile.php"><i class="icon_profile"></i> Mon Profil </a>
               </li>
               <li>
                 <a href="#"><i class="icon_mail_alt"></i> Inbox </a>
