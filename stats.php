@@ -148,7 +148,7 @@ $LastName=$_SESSION['LastName'];
           </li>
 
           <li>
-            <a class="" href="stats.php">
+            <a class="" href="stats.html">
                           <i class="icon_piechart"></i>
                           <span>Statistiques</span>
 
@@ -192,10 +192,76 @@ $LastName=$_SESSION['LastName'];
        <section class="wrapper">
            <div class="row">
            <div class="col-lg-12">
-               <h3 class="page-header"><i class="fa fa-files-o"></i> Accueil </h3>
+               <h3 class="page-header"><i class="fa fa-files-o"></i> Statistiques </h3>
            </div>
            </div>
          <!-- all the page content goes here -->
+           <?php
+           require "php/CnxBD.php";
+           $mDBConnection=CnxBD::getInstance();
+           $req0 =$mDBConnection->prepare("SELECT count(Patient_ID) as NombrePatients FROM `patient`");
+           $req0->execute();
+           $Nombre0=$req0->fetch(PDO::FETCH_OBJ);
+
+           $req1 =$mDBConnection->prepare("SELECT count(*) as NombrePatientsResidents FROM `patient` WHERE `isHere`=1 ");
+           $req1->execute();
+           $Nombre1=$req1->fetch(PDO::FETCH_OBJ);
+           $req2 =$mDBConnection->prepare("SELECT count(*) as NombreMedecins FROM `doctor`");
+           $req2->execute();
+           $Nombre2=$req2->fetch(PDO::FETCH_OBJ);
+           $req3 =$mDBConnection->prepare("SELECT count(*) as Nombre FROM `receptionist`");
+           $req3->execute();
+           $Nombre3=$req3->fetch(PDO::FETCH_OBJ);
+           $req4 =$mDBConnection->prepare("SELECT count(*) as Nombre FROM `visit`");
+           $req4->execute();
+           $Nombre4=$req4->fetch(PDO::FETCH_OBJ);
+           $req5 =$mDBConnection->prepare("SELECT count(*) as Nombre FROM `meeting`");
+           $req5->execute();
+           $Nombre5=$req5->fetch(PDO::FETCH_OBJ);
+           ?>
+           <div class="panel" >
+               <div id="recep_panel" class="panel-heading " >
+                   <h3 class="panel-title">Statistiques</h3>
+               </div>
+               <div class="panel-body">
+                   <div class="row">
+                       <div class=" col-md-9 col-lg-9 ">
+                           <table class="table table-user-information">
+                               <tbody>
+                               <tr>
+                                   <td>Nombre total des patients :</td>
+                                   <td><?php echo $Nombre0->NombrePatients ?></td>
+                               </tr>
+                               <tr>
+                                   <td>Nombre totale des patients résidents  :</td>
+                                   <td><?php echo $Nombre1->NombrePatientsResidents ?></td>
+                               </tr>
+                               <tr>
+                                   <td>Nombre totale des medecins :</td>
+                                   <td><?php echo $Nombre2->NombreMedecins ?></td>
+                               </tr>
+
+
+                               <tr>
+                                   <td>Nombre totale des receptionnistes</td>
+                                   <td><?php echo $Nombre3->Nombre ?></td>
+                               </tr>
+                               <tr>
+                                   <td>Nombre totale des visites : </td>
+                                   <td><?php echo $Nombre4->Nombre ?></td>
+                               </tr>
+                               <tr>
+                                   <td>Nombre totale des rendez-vous : </td>
+                                   <td><?php echo $Nombre5->Nombre ?></td>
+                               </tr>
+                               
+                               </tbody>
+                           </table>
+                       </div>
+
+                   </div>
+               </div>
+           </div>
 
        </section>
      </section>

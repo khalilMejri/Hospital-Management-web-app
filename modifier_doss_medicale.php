@@ -318,6 +318,7 @@
                                   else {
                                       echo "
                                     <option disabled selected hidden>choisir Groupe sanguin:</option>
+<<<<<<< HEAD
                                     <option value='A+-'>A+</option>
                                     <option value='A-'>A-</option>
                                     <option value='B+'>B+</option>
@@ -330,6 +331,16 @@
                                   }
 
                               echo"
+=======
+                                    <option name="Groupe_Sanguin" value=A+"">A+</option>
+                                    <option name="Groupe_Sanguin" value="A-">A-</option>
+                                    <option name="Groupe_Sanguin" value="B+">B+</option>
+                                    <option name="Groupe_Sanguin" value="B-">B-</option>
+                                    <option name="Groupe_Sanguin" value="AB+">AB+</option>
+                                    <option name="Groupe_Sanguin" value="AB-">AB-</option>
+                                    <option name="Groupe_Sanguin" value="O+">O+</option>
+                                    <option name="Groupe_Sanguin" value="O-">O-</option>
+>>>>>>> 54a0cfd30f40dabbeae6de20d07f58897f316c53
                                 </select>
                             </td>
                         </tr>

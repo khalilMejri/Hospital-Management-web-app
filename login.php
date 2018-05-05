@@ -64,7 +64,7 @@
 
                         include "php/CnxBD.php";
                         $db_connexion = CnxBD::getInstance();
-                    $req = $db_connexion->prepare('SELECT Username,Password FROM receptionist WHERE Username = :Username AND Password= :Password');
+                    $req = $db_connexion->prepare('SELECT Username,Password,Photo,Receptionist_CIN FROM receptionist WHERE Username = :Username AND Password= :Password');
 
                     $user_name=$_POST['username'];
                     $mdp=$_POST['password'];
@@ -95,12 +95,21 @@
 
                     }
                     elseif(count($reponse)==1){
-                      echo "welcome";
-                      session_start();
-                      $_SESSION['user']=$user_name;
-                      $_SESSION['passwd']=$mdp;
-                      header("Location:index.php");
+                        foreach ($reponse as $per) {
+                            $req2 = $db_connexion->prepare('SELECT `FirstName`,`LastName` FROM person WHERE CIN =?');
+                            $req2->execute(array($per->Receptionist_CIN));
+                            $reponse2 = $req2->fetch(PDO::FETCH_OBJ);
 
+                            echo "welcome";
+                            session_start();
+                            $_SESSION['user'] = $user_name;
+                            $_SESSION['passwd'] = $mdp;
+                            $_SESSION['Photo'] = $per->Photo;
+                            $_SESSION['FirstName'] = $reponse2->FirstName;
+                            $_SESSION['LastName'] = $reponse2->LastName;
+
+                            header("Location:index.php");
+                        }
                     }
 
 
