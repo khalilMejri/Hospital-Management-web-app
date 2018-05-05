@@ -195,51 +195,171 @@
                 <table class="table table-hover personal-task">
                     <tbody>
                     <form class="form-horizontal" action="modification_fich.php" method="post" >
+                        <?php
+                        include "php/CnxBD.php";
+                        $cin=$_GET['id'];
+                        $docID=$_GET['docID'];
+                        $bd = CnxBD::getInstance();
+                        $req = $bd->query("select * from hospital_db.patient,hospital_db.medical_doc WHERE patient.Patient_CIN=$cin AND patient.Medical_DOC_ID=$docID AND medical_doc.ID=$docID AND patient.Medical_DOC_ID=medical_doc.ID ");
+                        //$req->execute(array($_GET['id'], $_GET['docID'], $_GET['docID']));
+                        $infos= $req->fetchAll(PDO::FETCH_OBJ);
+                        echo "
                         <tr>
                             <td><b>Groupe sanguin</b></td>
                             <td>
-                                <select class="selectpicker" data-width="50%" name="Groupe_Sanguin">
+                            
+                                
+                                <select class=\"selectpicker\" data-width='50%' name='Groupe_Sanguin' required>";
+                              foreach ($infos as $info):
+
+                                if($info->Groupe_Sanguin=="A+") {
+                                    echo "
+                                    <option value='A+'>A+</option>
+                                    <option value='A-'>A-</option>
+                                    <option value='B+'>B+</option>
+                                    <option value='B-'>B-</option>
+                                    <option value='AB+'>AB+</option>
+                                    <option value='AB-'>AB-</option>
+                                    <option value='O+'>O+</option>
+                                    <option value='O-'>O-</option>";
+
+                                }
+                              else if($info->Groupe_Sanguin=="A-") {
+                                  echo "
+                                    <option value='A-'>A-</option>
+                                    <option value='A+'>A+</option>
+                                    <option value='B+'>B+</option>
+                                    <option value='B-'>B-</option>
+                                    <option value='AB+'>AB+</option>
+                                    <option value='AB-'>AB-</option>
+                                    <option value='O+'>O+</option>
+                                    <option value='O-'>O-</option>";
+
+                              }
+                              else if($info->Groupe_Sanguin=="B+") {
+                                  echo "
+                                    <option value='B+'>B+</option>
+                                    <option value='A+'>A+</option>
+                                    <option value='A-'>A-</option>
+                                    <option value='B-'>B-</option>
+                                    <option value='AB+'>AB+</option>
+                                    <option value='AB-'>AB-</option>
+                                    <option value='O+'>O+</option>
+                                    <option value='O-'>O-</option>";
+
+                              }
+                              else if($info->Groupe_Sanguin=="B-") {
+                                  echo "
+                                    <option value='B-'>B-</option>
+                                    <option value='A+'>A+</option>
+                                    <option value='A-'>A-</option>
+                                    <option value='B+'>B+</option>
+                                    <option value='AB+'>AB+</option>
+                                    <option value='AB-'>AB-</option>
+                                    <option value='O+'>O+</option>
+                                    <option value='O-'>O-</option>";
+
+                              }
+                              else if($info->Groupe_Sanguin=="AB+") {
+                                  echo "
+                                    <option value='AB+'>AB+</option>
+                                    <option value='A+'>A+</option>
+                                    <option value='A-'>A-</option>
+                                    <option value='B+'>B+</option>
+                                    <option value='B-'>B-</option>
+                                    <option value='AB-'>AB-</option>
+                                    <option value='O+'>O+</option>
+                                    <option value='O-'>O-</option>";
+                                  }
+                              else if($info->Groupe_Sanguin=="AB-") {
+                                  echo "
+                                    <option value='AB-'>AB-</option>
+                                    <option value='A+'>A+</option>
+                                    <option value='A-'>A-</option>
+                                    <option value='B+'>B+</option>
+                                    <option value='B-'>B-</option>
+                                    <option value='AB+'>AB+</option>
+                                    <option value='O+'>O+</option>
+                                    <option value='O-'>O-</option>";
+                                  }
+                              else if($info->Groupe_Sanguin=="O+") {
+                                  echo "
+                                    <option value='O-'>O+</option>
+                                    <option value='A+'>A+</option>
+                                    <option value='A-'>A-</option>
+                                    <option value='B+'>B+</option>
+                                    <option value='B-'>B-</option>
+                                    <option value='AB+'>AB+</option>
+                                    <option value='AB-'>AB-</option>
+                                    <option value='O-'>O-</option>";
+                                  }
+                              else if($info->Groupe_Sanguin=="O-") {
+                                  echo "
+                                    <option value='O+'>O+</option>
+                                    <option value='A+'>A+</option>
+                                    <option value='A-'>A-</option>
+                                    <option value='B+'>B+</option>
+                                    <option value='B-'>B-</option>
+                                    <option value='AB+'>AB+</option>
+                                    <option value='AB-'>AB-</option>
+                                    <option value='O+'>O+</option>";
+                                  }
+                              else if($info->Groupe_Sanguin=="O-") {
+                                  echo "
+                                    <option value='O+'>O+</option>
+                                    <option value='A+'>A+</option>
+                                    <option value='A-'>A-</option>
+                                    <option value='B+'>B+</option>
+                                    <option value='B-'>B-</option>
+                                    <option value='AB+'>AB+</option>
+                                    <option value='AB-'>AB-</option>
+                                    <option value='O+'>O+</option>";
+                                  }
+                                  else {
+                                      echo "
                                     <option disabled selected hidden>choisir Groupe sanguin:</option>
-                                    <option>A+</option>
-                                    <option>A-</option>
-                                    <option>B+</option>
-                                    <option>B-</option>
-                                    <option>AB+</option>
-                                    <option>AB-</option>
-                                    <option>O+</option>
-                                    <option>O-</option>
+                                    <option value='A+-'>A+</option>
+                                    <option value='A-'>A-</option>
+                                    <option value='B+'>B+</option>
+                                    <option value='B-'>B-</option>
+                                    <option value='AB+'>AB+</option>
+                                    <option value='AB-'>AB-</option>
+                                    <option value='O+'>O+</option>
+                                    <option value='O-'>O-</option>";
+
+                                  }
+
+                              echo"
                                 </select>
                             </td>
                         </tr>
                         <tr>
                             <td><b>Allergie et reaction</b></td>
-                            <td><input  style="width: 50%" type="text" name="Allergie" placeholder="remplir" class="form-control"></td>
+                            <td><input  style='width: 50%' type='text' name='Allergie' placeholder='remplir' class='form-control' value='$info->Allergie' required></td>
                         </tr>
                         <tr>
                             <td><b>poids</b> </td>
-                            <td><input style="width: 50%" type="text" name="Poids" placeholder="entrer le poids" class="form-control"></td>
+                            <td><input style='width: 50%' type='text' name='Poids' placeholder='entrer le poids' class='form-control' value='$info->Poids' required></td>
                         </tr>
                         <tr>
                             <td><b>Taille</b></td>
-                            <td><input  style="width: 50%" type="text" name="Taille" placeholder="entrer la taille"class="form-control"> </td>
+                            <td><input  style='width: 50%' type='text' name='Taille' placeholder='entrer la taille'class='form-control' value='$info->Taille' required></td>
                         </tr>
                         <tr>
-                            <td colspan="2" style="text-align: center">
-                                <a href="#demo" class="btn btn-basic" data-toggle="collapse" style="font-size: large">Consultez les visites</a>
+                            <td colspan='2' style='text-align: center'>
+                                <a href='#demo' class='btn btn-basic' data-toggle='collapse' style='font-size: large'>Consultez les visites</a>
 
-                                <div id="demo" class="collapse">
-                                    <table class="table table-hover personal-task">
+                                <div id='demo' class='collapse'>
+                                    <table class='table table-hover personal-task'>
                                         <tbody>
 
-                                                    <?php
-                                                        include "php/CnxBD.php";
-                                                        $cin=$_GET['id'];
-                                                        $docID=$_GET['docID'];
-                                                        $bd = CnxBD::getInstance();
-                                                        $req = $bd->query("select * from hospital_db.patient,hospital_db.medical_doc,hospital_db.meeting WHERE patient.Patient_CIN=$cin AND patient.Medical_DOC_ID=$docID AND medical_doc.ID=$docID AND patient.Medical_DOC_ID=medical_doc.ID AND patient.Patient_CIN=meeting.Patient_CIN ");
-                                                        //$req->execute(array($_GET['id'], $_GET['docID'], $_GET['docID']));
-                                                        $infos= $req->fetchAll(PDO::FETCH_OBJ);
-                                                    $b=0;
+                                                        
+                                                    ";
+                                  $b=0;
+                                  break ;
+                              endforeach;
+                        $req = $bd->query("select * from hospital_db.patient,hospital_db.medical_doc,hospital_db.meeting WHERE patient.Patient_CIN=$cin AND patient.Medical_DOC_ID=$docID AND medical_doc.ID=$docID AND patient.Medical_DOC_ID=medical_doc.ID AND patient.Patient_CIN=meeting.Patient_CIN ");
+                        $infos= $req->fetchAll(PDO::FETCH_OBJ);
                                                     foreach ($infos as $info):
                                                         if(isset($info->Date))
                                                         {
@@ -277,7 +397,7 @@
         <div class="container">
             <div class="col-lg-9">
         <button style="margin-left: 100%" type="submit" class="btn btn-success">Enregistrer modifications</button>
-            </div>
+               </div>
         </div>
         </form>
     </section>

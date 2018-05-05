@@ -17,6 +17,7 @@ $patient=$_SESSION['last Patient'];
 $hour=$_POST["hour"];
 $minute=$_POST["minute"];
 $date=$_POST["date"];
+$description=$_POST["Description"];
 $value=true ;
 echo $date ;
 $expl= explode(' ',$date);
@@ -44,7 +45,7 @@ if ($value==true ) {
 
             'Date' => $date,
 
-            'Description' => " ",
+            'Description' => $description
 
         ));
 

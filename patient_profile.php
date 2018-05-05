@@ -253,13 +253,13 @@ if(isset($_GET['docID']))
                                 </div>
                             </div>
                         </div>
-                        <div id="demo" >
+                        <div id="demo" class="collapse" >
                             <form name="rendez-vous"  action="gestion_ajout_rendez-vous.php" method="post">
                                 <input name="id" style="visibility: hidden" value="<?php $_GET['id'] ?>" >
                             <table class="table table-hover personal-task">
                                 <tbody>
                                 <tr>
-                                    <td>
+                                    <td style="text-align: center;">
                                         <div class="form-group">
                                             <div class="col-sm-12">
                                                 <label>Date</label><input type="date" class="form-control"
@@ -271,7 +271,7 @@ if(isset($_GET['docID']))
                                 </tr>
                                 <tr>
                                     <td style="text-align: center;">
-                                        choisir docteur:
+                                        choisir docteur:<br>
 
                                         <select class="selectpicker" name="medecin">
                                             <option disabled selected hidden>choisir medecin:</option>
@@ -286,11 +286,20 @@ if(isset($_GET['docID']))
                                 <tr>
 
                                     <td style="text-align: center;">
+                                        choisir date:<br>
                                     <input name="hour" type="number" min="8" , max="18" name="H">
                                     <select class="selectpicker" name="minute">
                                         <option>00</option>
                                         <option>30</option>
                                     </select>
+                                    </td>
+                                </tr>
+                                <tr>
+
+                                    <td style="text-align: center;">
+                                        Description:<br>
+                                        <input  class="form-control" name="Description" type="tesxt " placeholder="exp(bronchite...)">
+
                                     </td>
                                 </tr>
 
@@ -299,7 +308,7 @@ if(isset($_GET['docID']))
                                     <td style="text-align: center;">
                                         <div class="form-group">
                                             <div class="col-sm-12">
-                                                <input type="submit" class="btn btn-info" >Enregistrer</input>
+                                                <input type="submit" class="btn btn-info" value="Enregistrer"></input>
                                             </div>
                                         </div>
                                     </td>
@@ -320,7 +329,7 @@ if(isset($_GET['docID']))
 
 
     <!-- page footer -->
-    <footer class="copyright col-sm-3">
+    <footer class="copyright col-sm-3" style="position: fixed">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 text-center">
